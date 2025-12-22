@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOVE EYE EXAM</title>
+    <style>
+      :root {
+        --pink: #ff1493;
+        --paper: #f6f6f6;
+        --black: #000000;
+        --gray: #5e5e5e;
+      }
+
+      @font-face {
+        font-family: "RockLocal";
+        src: url("fonts/rockwellbold.TTF") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Rockwell", "Rockwell Nova", "Roboto Slab", serif;
+        color: var(--black);
+        background: var(--paper);
+      }
+
+      .screen {
+        min-height: 100vh;
+        width: 100%;
+      }
+
+      .landing {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+        cursor: pointer;
+        overflow: hidden;
+        background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 36px 36px;
+      }
+
+      .chart {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+        letter-spacing: 6px;
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", "Roboto Slab",
+          serif;
+        width: min(92vw, 900px);
+        --side-width: clamp(90px, 22vw, 180px);
+      }
+
+      .chart-line {
+        display: grid;
+        grid-template-columns: var(--side-width) 1fr var(--side-width);
+        align-items: center;
+        width: 100%;
+      }
+
+      .chart-left,
+      .chart-right {
+        font-size: 0.9rem;
+        color: var(--black);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .chart-left {
+        justify-self: end;
+        display: grid;
+        justify-items: center;
+        gap: 4px;
+        width: 70px;
+      }
+
+      .chart-left .ratio-top {
+        font-weight: 600;
+      }
+
+      .chart-left .ratio-line {
+        width: 100%;
+        border-bottom: 2px solid var(--black);
+      }
+
+      .chart-left .ratio-bottom {
+        font-weight: 600;
+      }
+
+      .chart-right {
+        justify-self: start;
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: clamp(24px, 6vw, 56px);
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", "Roboto Slab",
+          serif;
+      }
+
+      .chart-right .feet {
+        display: grid;
+        justify-items: center;
+        gap: 4px;
+        width: clamp(56px, 12vw, 70px);
+        font-size: clamp(0.65rem, 1.6vw, 0.85rem);
+        text-transform: uppercase;
+      }
+
+      .chart-right .feet-line {
+        width: 100%;
+        border-bottom: 2px solid var(--black);
+      }
+
+      .chart-right .num {
+        font-weight: 700;
+        font-size: clamp(1.8rem, 6vw, 3.2rem);
+      }
+
+      .chart-center {
+        display: flex;
+        justify-content: center;
+        gap: clamp(16px, 4.5vw, 56px);
+      }
+
+      .chart-letter,
+      .chart-heart {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+
+      .chart-letter:hover,
+      .chart-heart:hover {
+        animation: wiggle 0.4s ease;
+      }
+
+      .line-1 .chart-center {
+        font-size: clamp(4.5rem, 18vw, 10rem);
+      }
+
+      .line-2 .chart-center {
+        font-size: clamp(3.6rem, 14vw, 8rem);
+      }
+
+      .line-3 .chart-center {
+        font-size: clamp(2.8rem, 11vw, 6rem);
+      }
+
+      .line-4 .chart-center {
+        font-size: clamp(2.2rem, 8.5vw, 4.5rem);
+      }
+
+      .line-5 .chart-center {
+        font-size: clamp(1.6rem, 6.5vw, 3rem);
+      }
+
+      .line-6 .chart-center {
+        font-size: clamp(1.2rem, 5vw, 2.2rem);
+      }
+
+      .line-7 .chart-center {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+      }
+
+      .pink {
+        color: var(--pink);
+      }
+
+      .black {
+        color: var(--black);
+      }
+
+      .heart-letter {
+        position: relative;
+        width: 64px;
+        height: 56px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: transparent;
+      }
+
+      .heart-letter::before,
+      .heart-letter::after {
+        content: "";
+        position: absolute;
+        width: 32px;
+        height: 48px;
+        background: var(--pink);
+        border-radius: 32px 32px 0 0;
+        top: 0;
+      }
+
+      .heart-letter::before {
+        left: 18px;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+
+      .heart-letter::after {
+        left: 2px;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+
+      .heart-letter {
+        animation: heartbeat 1.6s ease-in-out infinite;
+      }
+
+      .chart-heart {
+        color: var(--pink);
+        animation: heartbeat 1.6s ease-in-out infinite;
+      }
+
+      .pink-line {
+        height: 6px;
+        background: var(--pink);
+        border-radius: 0;
+        width: 100%;
+        justify-self: center;
+      }
+
+      .pink-line.thick {
+        height: 12px;
+      }
+
+      .credits {
+        margin-top: 16px;
+        font-size: clamp(0.65rem, 1.6vw, 0.8rem);
+        color: var(--black);
+        letter-spacing: 0.5px;
+        text-align: center;
+        line-height: 1.6;
+        text-transform: none;
+      }
+
+      .chart-divider {
+        display: grid;
+        grid-template-columns: var(--side-width) 1fr var(--side-width);
+        width: 100%;
+      }
+
+      .hint {
+        position: absolute;
+        bottom: 28px;
+        font-size: 14px;
+        color: var(--gray);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .hint span {
+        color: var(--pink);
+      }
+
+      .transition {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        pointer-events: none;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .panel {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+
+      .balloon img,
+      .eye img {
+        width: min(70vw, 560px);
+        border-radius: 16px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .blink {
+        background: #000;
+      }
+
+      .eye {
+        flex-direction: column;
+        gap: 24px;
+        color: var(--paper);
+        text-align: center;
+      }
+
+      .typewriter {
+        font-size: clamp(20px, 3vw, 32px);
+        letter-spacing: 1px;
+        min-height: 40px;
+      }
+
+      .main {
+        display: none;
+        padding: 60px 20px 80px;
+        background: var(--paper);
+      }
+
+      .clipboard {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 48px 32px 32px;
+        position: relative;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+      }
+
+      .clipboard::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160px;
+        height: 44px;
+        background: linear-gradient(135deg, #c9c9c9, #f1f1f1);
+        border-radius: 12px 12px 16px 16px;
+        box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.7);
+      }
+
+      .clipboard-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 20px;
+        margin-bottom: 28px;
+      }
+
+      .clipboard-title {
+        font-size: clamp(22px, 3vw, 28px);
+        color: var(--black);
+      }
+
+      .clipboard-meta {
+        color: var(--gray);
+        font-size: 14px;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .clipboard-meta span {
+        padding: 6px 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 999px;
+        background: #fafafa;
+      }
+
+      .clipboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .chart-box {
+        border: 1px solid #e6e6e6;
+        border-radius: 16px;
+        padding: 18px;
+        background: #fcfcfc;
+      }
+
+      .chart-box h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        color: var(--pink);
+        letter-spacing: 2px;
+      }
+
+      .chart-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: var(--gray);
+        display: grid;
+        gap: 10px;
+      }
+
+      .chart-box li {
+        padding: 10px 12px;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px dashed #e0e0e0;
+      }
+
+      .thumbs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .thumbs img {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        display: block;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        25% {
+          transform: translateY(-6px) rotate(-2deg);
+        }
+        75% {
+          transform: translateY(4px) rotate(2deg);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .chart {
+          gap: 12px;
+          --side-width: clamp(80px, 26vw, 120px);
+        }
+
+        .chart-line {
+          grid-template-columns: var(--side-width) 1fr var(--side-width);
+        }
+
+        .heart-letter {
+          width: 50px;
+          height: 44px;
+        }
+
+        .heart-letter::before,
+        .heart-letter::after {
+          width: 25px;
+          height: 38px;
+        }
+
+        .pink-line {
+          height: 4px;
+        }
+
+        .clipboard {
+          padding: 40px 18px 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section id="landing" class="screen landing" aria-label="Love Eye Exam">
+        <div class="chart">
+          <div class="chart-line line-1">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">200</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-letter pink">L</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>200 FT</span>
+                <span class="feet-line"></span>
+                <span>61 m</span>
+              </span>
+              <span class="num">1</span>
+            </span>
+          </div>
+          <div class="chart-line line-2">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">100</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-heart">♥</span>
+              <span class="chart-letter pink">V</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>100 FT</span>
+                <span class="feet-line"></span>
+                <span>30.5 m</span>
+              </span>
+              <span class="num">2</span>
+            </span>
+          </div>
+          <div class="chart-line line-3">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">80</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-letter black">I</span>
+              <span class="chart-letter pink">E</span>
+              <span class="chart-letter black">S</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>70 FT</span>
+                <span class="feet-line"></span>
+                <span>21.3 m</span>
+              </span>
+              <span class="num">3</span>
+            </span>
+          </div>
+          <div class="chart-line line-4">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">60</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-letter pink">E</span>
+              <span class="chart-letter black">Y</span>
+              <span class="chart-letter pink">E</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>40 FT</span>
+                <span class="feet-line"></span>
+                <span>17.2 m</span>
+              </span>
+              <span class="num">4</span>
+            </span>
+          </div>
+          <div class="chart-line line-5">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">40</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-letter black">Y</span>
+              <span class="chart-letter black">O</span>
+              <span class="chart-letter black">U</span>
+              <span class="chart-letter black">R</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>30 FT</span>
+                <span class="feet-line"></span>
+                <span>10 m</span>
+              </span>
+              <span class="num">5</span>
+            </span>
+          </div>
+          <div class="chart-divider">
+            <div></div>
+            <div class="pink-line"></div>
+            <div></div>
+          </div>
+          <div class="chart-line line-6">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">30</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-letter black">F</span>
+              <span class="chart-letter black">I</span>
+              <span class="chart-letter black">R</span>
+              <span class="chart-letter black">S</span>
+              <span class="chart-letter black">T</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>15 FT</span>
+                <span class="feet-line"></span>
+                <span>8 m</span>
+              </span>
+              <span class="num">6</span>
+            </span>
+          </div>
+          <div class="chart-line line-7">
+            <div class="chart-left" aria-hidden="true">
+              <span class="ratio-top">20</span>
+              <span class="ratio-line"></span>
+              <span class="ratio-bottom">20.5</span>
+            </div>
+            <div class="chart-center">
+              <span class="chart-letter pink">E</span>
+              <span class="chart-letter pink">X</span>
+              <span class="chart-letter pink">A</span>
+              <span class="chart-letter pink">M</span>
+            </div>
+            <span class="chart-right">
+              <span class="feet">
+                <span>10 FT</span>
+                <span class="feet-line"></span>
+                <span>6 m</span>
+              </span>
+              <span class="num">7</span>
+            </span>
+          </div>
+          <div class="chart-divider">
+            <div></div>
+            <div class="pink-line thick"></div>
+            <div></div>
+          </div>
+          <div class="credits">
+            <div>producer 임도건, 김서현</div>
+            <div>assistant 서준빈, 김윤서</div>
+            <div>백석예술대학교 극작과 웹컨텐츠 분과 2st 웹진</div>
+            <div>design by @</div>
+          </div>
+      </section>
+
+      <section id="transition" class="transition" aria-hidden="true">
+        <div id="balloon" class="panel balloon">
+          <!-- Replace with heart-shaped hot air balloon image -->
+          <img src="src/img/img1.png" alt="Heart balloon" />
+        </div>
+        <div id="blink" class="panel blink"></div>
+        <div id="eye" class="panel eye">
+          <!-- Replace with eye + heart pupil image -->
+          <img src="src/img/img2.png" alt="Eye with heart pupil" />
+          <div id="typewriter" class="typewriter"></div>
+        </div>
+      </section>
+
+      <section id="main" class="screen main" aria-label="Medical Clipboard">
+        <div class="clipboard">
+          <div class="clipboard-header">
+            <div class="clipboard-title">Patient Name: First Love</div>
+            <div class="clipboard-meta">
+              <span>Date: 2025-00-00</span>
+              <span>❤︎ Vision Check</span>
+              <span>Chart No. 001</span>
+            </div>
+          </div>
+          <div class="clipboard-grid">
+            <div class="chart-box">
+              <h3>NOVEL</h3>
+              <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+              </ul>
+            </div>
+            <div class="chart-box">
+              <h3>CARTOON</h3>
+              <div class="thumbs">
+                <img src="https://placehold.co/600x400" alt="Cartoon 1" />
+                <img src="https://placehold.co/600x400" alt="Cartoon 2" />
+                <img src="https://placehold.co/600x400" alt="Cartoon 3" />
+                <img src="https://placehold.co/600x400" alt="Cartoon 4" />
+              </div>
+            </div>
+            <div class="chart-box">
+              <h3>REVIEW</h3>
+              <ul>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      const landing = document.getElementById("landing");
+      const transition = document.getElementById("transition");
+      const balloon = document.getElementById("balloon");
+      const blink = document.getElementById("blink");
+      const eye = document.getElementById("eye");
+      const typewriter = document.getElementById("typewriter");
+      const main = document.getElementById("main");
+
+      let hasPlayed = false;
+
+      const floatTween = gsap.to(balloon, {
+        y: -20,
+        duration: 2.4,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        paused: true,
+      });
+
+      function typeText(text, callback) {
+        let index = 0;
+        typewriter.textContent = "";
+        const timer = setInterval(() => {
+          typewriter.textContent += text[index];
+          index += 1;
+          if (index >= text.length) {
+            clearInterval(timer);
+            if (callback) callback();
+          }
+        }, 55);
+      }
+
+      landing.addEventListener("click", () => {
+        if (hasPlayed) return;
+        hasPlayed = true;
+
+        transition.style.opacity = 1;
+        transition.style.pointerEvents = "auto";
+
+        const tl = gsap.timeline();
+
+        tl.to(landing, { opacity: 0, duration: 0.6, ease: "power2.out" })
+          .set(landing, { display: "none" })
+          .set(transition, { opacity: 1 })
+          .to(balloon, { opacity: 1, duration: 0.6 })
+          .add(() => floatTween.play())
+          .to(balloon, { opacity: 0, duration: 0.4, delay: 1.8 })
+          .to(blink, { opacity: 1, duration: 0.2 })
+          .to(blink, { opacity: 0, duration: 0.2 })
+          .to(eye, { opacity: 1, duration: 0.6 })
+          .add(() => {
+            typeText("It's definitely your first love.", () => {
+              gsap
+                .timeline()
+                .to(transition, { opacity: 0, duration: 0.6, delay: 0.6 })
+                .set(transition, { display: "none" })
+                .set(main, { display: "block" })
+                .fromTo(main, { opacity: 0 }, { opacity: 1, duration: 0.8 });
+            });
+          });
+      });
+    </script>
+  </body>
+</html>
