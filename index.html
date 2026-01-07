@@ -286,11 +286,26 @@
         opacity: 0;
       }
 
-      .balloon img,
+      .balloon {
+        position: relative;
+      }
+
+      .balloon-base,
       .eye img {
         width: min(70vw, 560px);
         border-radius: 16px;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        display: block;
+      }
+
+      .balloon-float {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        width: min(35vw, 240px);
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
+        pointer-events: none;
       }
 
       .blink {
@@ -639,12 +654,13 @@
       <section id="transition" class="transition" aria-hidden="true">
         <div id="balloon" class="panel balloon">
           <!-- Replace with heart-shaped hot air balloon image -->
-          <img src="src/img/img1.png" alt="Heart balloon" />
+          <img class="balloon-base" src="src/img/img1.jpeg" alt="Heart balloon" />
+          <img class="balloon-float" src="src/img/img2.png" alt="Floating heart" />
         </div>
         <div id="blink" class="panel blink"></div>
         <div id="eye" class="panel eye">
           <!-- Replace with eye + heart pupil image -->
-          <img src="src/img/img2.png" alt="Eye with heart pupil" />
+          <img src="src/img/img4.jpeg" alt="Eye with heart pupil" />
           <div id="typewriter" class="typewriter"></div>
         </div>
       </section>
@@ -702,8 +718,8 @@
 
       let hasPlayed = false;
 
-      const floatTween = gsap.to(balloon, {
-        y: -20,
+      const floatTween = gsap.to(".balloon-float", {
+        y: -40,
         duration: 2.4,
         ease: "sine.inOut",
         yoyo: true,
