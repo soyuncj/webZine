@@ -655,7 +655,7 @@
         <div id="balloon" class="panel balloon">
           <!-- Replace with heart-shaped hot air balloon image -->
           <img class="balloon-base" src="src/img/img1.jpeg" alt="Heart balloon" />
-          <img class="balloon-float" src="src/img/img2.png" alt="Floating heart" />
+          <img class="balloon-float" src="src/img/modified_img2.png" alt="Floating heart" />
         </div>
         <div id="blink" class="panel blink"></div>
         <div id="eye" class="panel eye">
@@ -719,11 +719,11 @@
       let hasPlayed = false;
 
       const floatTween = gsap.to(".balloon-float", {
-        y: -40,
-        duration: 2.4,
+        y: -60,
+        duration: 2,
         ease: "sine.inOut",
         yoyo: true,
-        repeat: -1,
+        repeat: 2,
         paused: true,
       });
 
@@ -754,7 +754,11 @@
           .set(transition, { opacity: 1 })
           .to(balloon, { opacity: 1, duration: 0.6 })
           .add(() => floatTween.play())
-          .to(balloon, { opacity: 0, duration: 0.4, delay: 1.8 })
+          .to(balloon, {
+            opacity: 0,
+            duration: 0.4,
+            delay: floatTween.totalDuration(),
+          })
           .to(blink, { opacity: 1, duration: 0.2 })
           .to(blink, { opacity: 0, duration: 0.2 })
           .to(eye, { opacity: 1, duration: 0.6 })
