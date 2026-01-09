@@ -7,7 +7,7 @@
     <style>
       :root {
         --pink: #ff1493;
-        --paper: #f6f6f6;
+        --paper: #fafaf8;
         --black: #000000;
         --gray: #5e5e5e;
       }
@@ -15,6 +15,14 @@
       @font-face {
         font-family: "RockLocal";
         src: url("fonts/rockwellbold.TTF") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "DXGothic";
+        src: url("fonts/DX고딕-40.otf") format("opentype");
         font-weight: normal;
         font-style: normal;
         font-display: swap;
@@ -44,13 +52,7 @@
         text-align: center;
         cursor: pointer;
         overflow: hidden;
-        background-image: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0.04) 1px,
-            transparent 1px
-          ),
-          linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-        background-size: 36px 36px;
+        background: var(--paper);
       }
 
       .chart {
@@ -244,13 +246,14 @@
       }
 
       .credits {
-        margin-top: 16px;
+        margin-top: 40px;
         font-size: clamp(0.65rem, 1.6vw, 0.8rem);
-        color: var(--black);
+        color: #444444;
         letter-spacing: 0.5px;
         text-align: center;
         line-height: 1.6;
         text-transform: none;
+        font-family: "DXGothic", sans-serif;
       }
 
       .chart-divider {
@@ -650,10 +653,10 @@
             <div></div>
           </div>
           <div class="credits">
-            <div>producer 임도건, 김서현</div>
-            <div>assistant 서준빈, 김윤서</div>
+            <div><b>Producer</b> 임도건, 김서현</div>
+            <div><b>Assistant</b> 서준빈, 김윤서</div>
             <div>백석예술대학교 극작과 웹컨텐츠 분과 2st 웹진</div>
-            <div>designed by GitHub @soyuncj</div>
+            <div><b>Designed by</b> @soyuncj</div>
           </div>
       </section>
 
