@@ -337,110 +337,266 @@
       .main {
         display: none;
         padding: 60px 20px 80px;
-        background: var(--paper);
+        background: radial-gradient(
+          circle at top,
+          #ffffff 0%,
+          #f6f2ee 45%,
+          #efe9e3 100%
+        );
+      }
+
+      .main-shell {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .main-header {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .logo {
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+        font-size: clamp(20px, 2.4vw, 30px);
+        letter-spacing: 6px;
+      }
+
+      .select-bar {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        right: 24px;
+        bottom: 18px;
+      }
+
+      .select-arc {
+        position: relative;
+        width: min(42vw, 240px);
+        height: min(22vw, 120px);
+      }
+
+      .select-arc::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-conic-gradient(
+          from 180deg at 50% 100%,
+          #6f6f6f 0deg 3deg,
+          transparent 3deg 9deg
+        );
+        -webkit-mask: radial-gradient(
+          circle at 50% 100%,
+          transparent 0 45%,
+          #000 46%
+        );
+        mask: radial-gradient(
+          circle at 50% 100%,
+          transparent 0 45%,
+          #000 46%
+        );
+        clip-path: inset(0 0 50% 0);
+      }
+
+      .select-arc::after {
+        content: "";
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        bottom: 0;
+        height: 2px;
+        background: #6f6f6f;
+      }
+
+      .select-label {
+        position: absolute;
+        font-family: "DXGothic", sans-serif;
+        font-size: clamp(12px, 1.7vw, 16px);
+        color: #6f6f6f;
+        text-transform: lowercase;
+        letter-spacing: 1px;
+      }
+
+      .select-label.left {
+        left: 6%;
+        bottom: 8px;
+      }
+
+      .select-label.center {
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+      }
+
+      .select-label.right {
+        right: 6%;
+        bottom: 8px;
+      }
+
+      .works-title {
+        margin: 6px 0 10px;
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+        font-size: clamp(20px, 3vw, 32px);
+        color: #5e5e5e;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
+      .works-title span {
+        color: var(--pink);
       }
 
       .clipboard {
-        max-width: 1100px;
-        margin: 0 auto;
+        width: 100%;
         background: #ffffff;
-        border-radius: 20px;
-        padding: 48px 32px 32px;
+        border-radius: 12px;
+        padding: clamp(18px, 3vw, 32px);
+        padding-bottom: calc(clamp(18px, 3vw, 32px) + 90px);
+        border: 2px solid #dedede;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
         position: relative;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
       }
 
-      .clipboard::before {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 160px;
-        height: 44px;
-        background: linear-gradient(135deg, #c9c9c9, #f1f1f1);
-        border-radius: 12px 12px 16px 16px;
-        box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.7);
+      .works-layout {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: clamp(16px, 2.4vw, 28px);
       }
 
-      .clipboard-header {
+      .works-left,
+      .works-right {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
         gap: 16px;
-        border-bottom: 1px solid #e2e2e2;
-        padding-bottom: 20px;
-        margin-bottom: 28px;
       }
 
-      .clipboard-title {
-        font-size: clamp(22px, 3vw, 28px);
-        color: var(--black);
+      .works-left {
+        border: 2px solid #d5d5d5;
+        padding: 16px;
+        gap: 18px;
       }
 
-      .clipboard-meta {
-        color: var(--gray);
-        font-size: 14px;
+      .works-profile {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 14px;
+        align-items: start;
+      }
+
+      .eye-frame {
+        border: 2px solid #cfcfcf;
+        padding: 10px;
         display: flex;
-        gap: 16px;
         align-items: center;
-      }
-
-      .clipboard-meta span {
-        padding: 6px 10px;
-        border: 1px solid #e5e5e5;
-        border-radius: 999px;
+        justify-content: center;
         background: #fafafa;
       }
 
-      .clipboard-grid {
+      .eye-frame img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .profile-notes {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 20px;
+        gap: 8px;
       }
 
-      .chart-box {
-        border: 1px solid #e6e6e6;
-        border-radius: 16px;
-        padding: 18px;
-        background: #fcfcfc;
+      .note {
+        border: 2px solid #cfcfcf;
+        padding: 6px 10px;
+        font-family: "DXGothic", sans-serif;
+        font-size: 14px;
       }
 
-      .chart-box h3 {
-        margin: 0 0 12px;
-        font-size: 18px;
-        color: var(--pink);
-        letter-spacing: 2px;
-      }
-
-      .chart-box ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        color: var(--gray);
-        display: grid;
-        gap: 10px;
-      }
-
-      .chart-box li {
-        padding: 10px 12px;
-        background: #ffffff;
-        border-radius: 10px;
-        border: 1px dashed #e0e0e0;
-      }
-
-      .thumbs {
+      .works-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
       }
 
-      .thumbs img {
-        width: 100%;
-        border-radius: 10px;
-        border: 1px solid #e0e0e0;
+      .slot {
+        min-height: 36px;
+        border: 2px solid #cfcfcf;
+        background: #ffffff;
+      }
+
+      .works-footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border: 2px solid #cfcfcf;
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+        font-size: 16px;
+        color: var(--pink);
+        background: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .tag:hover,
+      .tag:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .tag:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
+      }
+
+      .mini-illustrations img {
+        width: 90px;
+        height: auto;
         display: block;
+      }
+
+      .works-panel {
+        border: 2px solid #d5d5d5;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-height: 200px;
+      }
+
+      .thumb-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .thumb-box {
+        border: 2px solid #cfcfcf;
+        padding: 12px 6px;
+        font-family: "DXGothic", sans-serif;
+        text-align: center;
+        font-size: 13px;
+        background: #ffffff;
+      }
+
+      .review-panel {
+        min-height: 220px;
+      }
+
+      .review-panel img {
+        width: 100%;
+        max-width: 220px;
+        align-self: center;
       }
 
       @keyframes heartbeat {
@@ -493,6 +649,32 @@
 
         .clipboard {
           padding: 40px 18px 28px;
+        }
+
+        .main-header {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .select-bar {
+          position: static;
+          justify-content: center;
+        }
+
+        .works-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .works-profile {
+          grid-template-columns: 1fr;
+        }
+
+        .works-footer {
+          align-items: center;
+        }
+
+        .mini-illustrations img {
+          width: 72px;
         }
       }
     </style>
@@ -675,40 +857,60 @@
       </section>
 
       <section id="main" class="screen main" aria-label="Medical Clipboard">
-        <div class="clipboard">
-          <div class="clipboard-header">
-            <div class="clipboard-title">Patient Name: First Love</div>
-            <div class="clipboard-meta">
-              <span>Date: 2025-00-00</span>
-              <span>❤︎ Vision Check</span>
-              <span>Chart No. 001</span>
-            </div>
-          </div>
-          <div class="clipboard-grid">
-            <div class="chart-box">
-              <h3>NOVEL</h3>
-              <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-              </ul>
-            </div>
-            <div class="chart-box">
-              <h3>CARTOON</h3>
-              <div class="thumbs">
-                <img src="https://placehold.co/600x400" alt="Cartoon 1" />
-                <img src="https://placehold.co/600x400" alt="Cartoon 2" />
-                <img src="https://placehold.co/600x400" alt="Cartoon 3" />
-                <img src="https://placehold.co/600x400" alt="Cartoon 4" />
+        <div class="main-shell">
+          <header class="main-header">
+            <div class="logo">LOVE EYE EXAM</div>
+          </header>
+          <h2 class="works-title">I fell in <span>love</span> at first sight...</h2>
+          <div class="clipboard">
+            <div class="works-layout">
+              <div class="works-left">
+                <div class="works-profile">
+                  <div class="eye-frame">
+                    <img src="src/img/img2.png" alt="Eye illustration" />
+                  </div>
+                  <div class="profile-notes">
+                    <div class="note">첫사랑이야메고 - 임도건</div>
+                    <div class="note">어쩌구사랑 - 서준빈</div>
+                    <div class="note">유리어쩌구사랑 - 김윤서</div>
+                  </div>
+                </div>
+                <div class="works-grid" aria-hidden="true">
+                  <div class="slot"></div>
+                  <div class="slot"></div>
+                  <div class="slot"></div>
+                  <div class="slot"></div>
+                  <div class="slot"></div>
+                  <div class="slot"></div>
+                </div>
+                <div class="works-footer">
+                  <a class="tag" href="novel.html">Novel</a>
+                  <div class="mini-illustrations">
+                    <img src="src/img/modified_img2.png" alt="Eye chart details" />
+                  </div>
+                </div>
+              </div>
+              <div class="works-right">
+                <div class="works-panel">
+                  <a class="tag" href="webtoon.html">webtoon</a>
+                  <div class="thumb-row">
+                    <div class="thumb-box">웹툰 1</div>
+                    <div class="thumb-box">웹툰 2</div>
+                    <div class="thumb-box">웹툰 3</div>
+                  </div>
+                </div>
+                <div class="works-panel review-panel">
+                  <a class="tag" href="review.html">Review</a>
+                  <img src="src/img/img2-2.jpeg" alt="Review chart" />
+                </div>
               </div>
             </div>
-            <div class="chart-box">
-              <h3>REVIEW</h3>
-              <ul>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-              </ul>
+            <div class="select-bar" aria-label="Category selector">
+              <div class="select-arc">
+                <span class="select-label left">novel</span>
+                <span class="select-label center">cartoon</span>
+                <span class="select-label right">review</span>
+              </div>
             </div>
           </div>
         </div>
