@@ -370,10 +370,8 @@
 
       .select-bar {
         display: flex;
-        justify-content: flex-end;
-        position: absolute;
-        right: 24px;
-        bottom: 18px;
+        justify-content: center;
+        margin-top: 16px;
       }
 
       .select-arc {
@@ -457,7 +455,6 @@
         background: #ffffff;
         border-radius: 12px;
         padding: clamp(18px, 3vw, 32px);
-        padding-bottom: calc(clamp(18px, 3vw, 32px) + 90px);
         border: 2px solid #dedede;
         box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
         position: relative;
@@ -514,6 +511,21 @@
         padding: 6px 10px;
         font-family: "DXGothic", sans-serif;
         font-size: 14px;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .note:hover,
+      .note:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .note:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
 
       .works-grid {
@@ -526,6 +538,21 @@
         min-height: 36px;
         border: 2px solid #cfcfcf;
         background: #ffffff;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .slot:hover,
+      .slot:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .slot:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
 
       .works-footer {
@@ -587,6 +614,21 @@
         text-align: center;
         font-size: 13px;
         background: #ffffff;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .thumb-box:hover,
+      .thumb-box:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .thumb-box:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
 
       .review-panel {
@@ -596,6 +638,15 @@
       .review-panel img {
         width: 100%;
         max-width: 220px;
+        align-self: center;
+      }
+
+      .review-box {
+        width: 100%;
+        max-width: 220px;
+        aspect-ratio: 1 / 1;
+        border: 2px solid #cfcfcf;
+        background: #ffffff;
         align-self: center;
       }
 
@@ -870,18 +921,18 @@
                     <img src="src/img/img2.png" alt="Eye illustration" />
                   </div>
                   <div class="profile-notes">
-                    <div class="note">첫사랑이야메고 - 임도건</div>
-                    <div class="note">어쩌구사랑 - 서준빈</div>
-                    <div class="note">유리어쩌구사랑 - 김윤서</div>
+                    <a class="note" href="novel.html">첫사랑이야메고 - 임도건</a>
+                    <a class="note" href="novel.html">어쩌구사랑 - 서준빈</a>
+                    <a class="note" href="novel.html">유리어쩌구사랑 - 김윤서</a>
                   </div>
                 </div>
-                <div class="works-grid" aria-hidden="true">
-                  <div class="slot"></div>
-                  <div class="slot"></div>
-                  <div class="slot"></div>
-                  <div class="slot"></div>
-                  <div class="slot"></div>
-                  <div class="slot"></div>
+                <div class="works-grid">
+                  <a class="slot" href="novel.html" aria-label="Novel slot 1"></a>
+                  <a class="slot" href="novel.html" aria-label="Novel slot 2"></a>
+                  <a class="slot" href="novel.html" aria-label="Novel slot 3"></a>
+                  <a class="slot" href="novel.html" aria-label="Novel slot 4"></a>
+                  <a class="slot" href="novel.html" aria-label="Novel slot 5"></a>
+                  <a class="slot" href="novel.html" aria-label="Novel slot 6"></a>
                 </div>
                 <div class="works-footer">
                   <a class="tag" href="novel.html">Novel</a>
@@ -894,14 +945,14 @@
                 <div class="works-panel">
                   <a class="tag" href="webtoon.html">webtoon</a>
                   <div class="thumb-row">
-                    <div class="thumb-box">웹툰 1</div>
-                    <div class="thumb-box">웹툰 2</div>
-                    <div class="thumb-box">웹툰 3</div>
+                    <a class="thumb-box" href="webtoon.html">웹툰 1</a>
+                    <a class="thumb-box" href="webtoon.html">웹툰 2</a>
+                    <a class="thumb-box" href="webtoon.html">웹툰 3</a>
                   </div>
                 </div>
                 <div class="works-panel review-panel">
                   <a class="tag" href="review.html">Review</a>
-                  <img src="src/img/img2-2.jpeg" alt="Review chart" />
+                  <div class="review-box" aria-hidden="true"></div>
                 </div>
               </div>
             </div>
