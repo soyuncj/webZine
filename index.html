@@ -419,6 +419,8 @@
         color: #6f6f6f;
         text-transform: lowercase;
         letter-spacing: 1px;
+        text-decoration: none;
+        transition: transform 0.2s ease, color 0.2s ease;
       }
 
       .select-label.left {
@@ -435,6 +437,17 @@
       .select-label.right {
         right: 6%;
         bottom: 8px;
+      }
+
+      .select-label:hover,
+      .select-label:focus-visible {
+        color: var(--black);
+        transform: translateY(-2px);
+      }
+
+      .select-label:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
 
       .works-title {
@@ -953,14 +966,16 @@
                 <div class="works-panel review-panel">
                   <a class="tag" href="review.html">Review</a>
                   <div class="review-box" aria-hidden="true"></div>
+                  <div class="select-bar" aria-label="Category selector">
+                    <div class="select-arc">
+                      <a class="select-label left" href="novel.html">novel</a>
+                      <a class="select-label center" href="webtoon.html"
+                        >cartoon</a
+                      >
+                      <a class="select-label right" href="review.html">review</a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="select-bar" aria-label="Category selector">
-              <div class="select-arc">
-                <span class="select-label left">novel</span>
-                <span class="select-label center">cartoon</span>
-                <span class="select-label right">review</span>
               </div>
             </div>
           </div>
