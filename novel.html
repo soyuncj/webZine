@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOVE EYE EXAM · Novel</title>
+    <style>
+      :root {
+        --pink: #ff1493;
+        --paper: #fafaf8;
+        --black: #000000;
+        --gray: #5e5e5e;
+      }
+
+      @font-face {
+        font-family: "RockLocal";
+        src: url("fonts/rockwellbold.TTF") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "DXGothic";
+        src: url("fonts/DX고딕-40.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Rockwell", "Rockwell Nova", "Roboto Slab", serif;
+        color: var(--black);
+        background: radial-gradient(
+          circle at top,
+          #ffffff 0%,
+          #f6f2ee 45%,
+          #efe9e3 100%
+        );
+      }
+
+      .page {
+        min-height: 100vh;
+        padding: 60px 20px 80px;
+      }
+
+      .frame {
+        max-width: 960px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 2px solid #dedede;
+        padding: clamp(20px, 3vw, 36px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 16px;
+        margin-bottom: 20px;
+      }
+
+      .logo {
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+        font-size: clamp(20px, 2.4vw, 30px);
+        letter-spacing: 6px;
+      }
+
+      .back {
+        text-decoration: none;
+        color: var(--gray);
+        font-family: "DXGothic", sans-serif;
+        border: 1px solid #d5d5d5;
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+
+      .title {
+        font-size: clamp(22px, 3vw, 32px);
+        color: var(--pink);
+        margin: 0 0 14px;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        font-family: "DXGothic", sans-serif;
+      }
+
+      .item {
+        border: 2px solid #cfcfcf;
+        padding: 10px 14px;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="frame">
+        <div class="header">
+          <div class="logo">LOVE EYE EXAM</div>
+          <a class="back" href="index.html">Back to Works</a>
+        </div>
+        <h1 class="title">Novel</h1>
+        <div class="list">
+          <div class="item">첫사랑이야메고 - 임도건</div>
+          <div class="item">어쩌구사랑 - 서준빈</div>
+          <div class="item">유리어쩌구사랑 - 김윤서</div>
+          <div class="item">추가 작품 1</div>
+          <div class="item">추가 작품 2</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
