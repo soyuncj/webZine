@@ -100,6 +100,21 @@
         border: 2px solid #cfcfcf;
         padding: 10px 14px;
         background: #ffffff;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .item:hover,
+      .item:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .item:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
     </style>
   </head>
@@ -112,11 +127,11 @@
         </div>
         <h1 class="title">Novel</h1>
         <div class="list">
-          <div class="item">첫사랑이야메고 - 임도건</div>
-          <div class="item">어쩌구사랑 - 서준빈</div>
-          <div class="item">유리어쩌구사랑 - 김윤서</div>
-          <div class="item">추가 작품 1</div>
-          <div class="item">추가 작품 2</div>
+          <a class="item" href="novel-1.html">첫사랑이야메고 - 임도건</a>
+          <a class="item" href="novel-2.html">어쩌구사랑 - 서준빈</a>
+          <a class="item" href="novel-3.html">유리어쩌구사랑 - 김윤서</a>
+          <a class="item" href="novel-4.html">추가 작품 1</a>
+          <a class="item" href="novel-5.html">추가 작품 2</a>
         </div>
       </section>
     </main>

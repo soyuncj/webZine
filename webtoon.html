@@ -102,6 +102,21 @@
         text-align: center;
         font-family: "DXGothic", sans-serif;
         background: #ffffff;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .thumb:hover,
+      .thumb:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .thumb:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
     </style>
   </head>
@@ -114,12 +129,12 @@
         </div>
         <h1 class="title">Webtoon</h1>
         <div class="thumbs">
-          <div class="thumb">웹툰 1</div>
-          <div class="thumb">웹툰 2</div>
-          <div class="thumb">웹툰 3</div>
-          <div class="thumb">웹툰 4</div>
-          <div class="thumb">웹툰 5</div>
-          <div class="thumb">웹툰 6</div>
+          <a class="thumb" href="webtoon-1.html">웹툰 1</a>
+          <a class="thumb" href="webtoon-2.html">웹툰 2</a>
+          <a class="thumb" href="webtoon-3.html">웹툰 3</a>
+          <a class="thumb" href="webtoon-4.html">웹툰 4</a>
+          <a class="thumb" href="webtoon-5.html">웹툰 5</a>
+          <a class="thumb" href="webtoon-6.html">웹툰 6</a>
         </div>
       </section>
     </main>
