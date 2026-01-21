@@ -676,6 +676,21 @@
         border: 2px solid #cfcfcf;
         background: #ffffff;
         align-self: center;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .review-box:hover,
+      .review-box:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .review-box:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
       }
 
       .review-panel .select-bar {
@@ -961,18 +976,18 @@
                     <img src="src/img/HeartEye.png" alt="Eye with heart pupil" />
                   </div>
                   <div class="profile-notes">
-                    <a class="note" href="novel.html">첫사랑이야메고 - 임도건</a>
-                    <a class="note" href="novel.html">어쩌구사랑 - 서준빈</a>
-                    <a class="note" href="novel.html">유리어쩌구사랑 - 김윤서</a>
+                    <a class="note" href="novel-1.html">첫사랑이야메고 - 임도건</a>
+                    <a class="note" href="novel-2.html">어쩌구사랑 - 서준빈</a>
+                    <a class="note" href="novel-3.html">유리어쩌구사랑 - 김윤서</a>
                   </div>
                 </div>
                 <div class="works-grid">
-                  <a class="slot" href="novel.html" aria-label="Novel slot 1"></a>
-                  <a class="slot" href="novel.html" aria-label="Novel slot 2"></a>
-                  <a class="slot" href="novel.html" aria-label="Novel slot 3"></a>
-                  <a class="slot" href="novel.html" aria-label="Novel slot 4"></a>
-                  <a class="slot" href="novel.html" aria-label="Novel slot 5"></a>
-                  <a class="slot" href="novel.html" aria-label="Novel slot 6"></a>
+                  <a class="slot" href="novel-1.html" aria-label="Novel slot 1"></a>
+                  <a class="slot" href="novel-2.html" aria-label="Novel slot 2"></a>
+                  <a class="slot" href="novel-3.html" aria-label="Novel slot 3"></a>
+                  <a class="slot" href="novel-4.html" aria-label="Novel slot 4"></a>
+                  <a class="slot" href="novel-5.html" aria-label="Novel slot 5"></a>
+                  <a class="slot" href="novel-5.html" aria-label="Novel slot 6"></a>
                 </div>
                 <div class="works-footer">
                   <a class="tag" href="novel.html">Novel</a>
@@ -985,19 +1000,23 @@
                 <div class="works-panel">
                   <a class="tag" href="webtoon.html">webtoon</a>
                   <div class="thumb-row">
-                    <a class="thumb-box" href="webtoon.html">웹툰 1</a>
-                    <a class="thumb-box" href="webtoon.html">웹툰 2</a>
-                    <a class="thumb-box" href="webtoon.html">웹툰 3</a>
+                    <a class="thumb-box" href="webtoon-1.html">웹툰 1</a>
+                    <a class="thumb-box" href="webtoon-2.html">웹툰 2</a>
+                    <a class="thumb-box" href="webtoon-3.html">웹툰 3</a>
                   </div>
                 </div>
                 <div class="works-panel review-panel">
                   <a class="tag" href="review.html">Review</a>
-                  <div class="review-box" aria-hidden="true"></div>
+                  <a
+                    class="review-box"
+                    href="review-1.html"
+                    aria-label="Review detail"
+                  ></a>
                   <div class="select-bar" aria-label="Category selector">
                     <div class="select-arc">
                       <a class="select-label left" href="novel.html">novel</a>
                       <a class="select-label center" href="webtoon.html"
-                        >cartoon</a
+                        >webtoon</a
                       >
                       <a class="select-label right" href="review.html">review</a>
                     </div>
