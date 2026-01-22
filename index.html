@@ -297,6 +297,7 @@
 
       .balloon {
         position: relative;
+        scale: 1.3;
       }
 
       .balloon-base,
@@ -310,9 +311,9 @@
       .balloon-float {
         position: absolute;
         left: 50%;
-        top: 40%;
+        top: 50%;
         width: min(35vw, 240px);
-        transform: translate(-50%, -50%);
+        transform-origin: center;
         filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
         pointer-events: none;
       }
@@ -951,7 +952,7 @@
       <section id="transition" class="transition" aria-hidden="true">
         <div id="balloon" class="panel balloon">
           <!-- Replace with heart-shaped hot air balloon image -->
-          <img class="balloon-base" src="src/img/img1_1.png" alt="Heart balloon" />
+          <img class="balloon-base" src="src/img/new1_3.png" alt="Heart balloon" />
           <img class="balloon-float" src="src/img/newImg2.png" alt="Floating heart" />
         </div>
         <div id="blink" class="panel blink"></div>
@@ -1040,6 +1041,8 @@
       const main = document.getElementById("main");
 
       let hasPlayed = false;
+
+      gsap.set(".balloon-float", { xPercent: -50, yPercent: -50, scale: 0.3 });
 
       const floatTween = gsap.to(".balloon-float", {
         y: -60,
