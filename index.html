@@ -310,8 +310,8 @@
 
       .balloon-float {
         position: absolute;
-        left: 50%;
-        top: 50%;
+        left: 51%;
+        top: 49%;
         width: min(35vw, 240px);
         transform-origin: center;
         filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
@@ -374,89 +374,97 @@
         justify-content: center;
       }
 
+/* 1. 전체 컨테이너 */
       .select-arc {
         position: relative;
         width: min(42vw, 240px);
-        height: min(22vw, 120px);
+        height: min(21vw, 120px);
+        overflow: visible;
       }
 
-      .select-arc::before {
-        content: "";
+      /* (배경 그라디언트 삭제됨) */
+
+      /* 2. 공통 스타일: 클릭 버튼(.select-ray)과 장식용 선(.deco-ray) */
+      .select-ray,
+      .deco-ray {
         position: absolute;
-        inset: 0;
-        background: repeating-conic-gradient(
-          from 180deg at 50% 100%,
-          #6f6f6f 0deg 2.5deg,
-          transparent 2.5deg 9deg
-        );
-        -webkit-mask: radial-gradient(
-            circle at 50% 100%,
-            transparent 0 52%,
-            #000 52% 100%
-          ),
-          conic-gradient(
-            from 180deg at 50% 100%,
-            #000 0deg 180deg,
-            transparent 180deg 360deg
-          );
-        mask: radial-gradient(
-            circle at 50% 100%,
-            transparent 0 52%,
-            #000 52% 100%
-          ),
-          conic-gradient(
-            from 180deg at 50% 100%,
-            #000 0deg 180deg,
-            transparent 180deg 360deg
-          );
-      }
-
-      .select-arc::after {
-        content: "";
-        position: absolute;
-        left: 8%;
-        right: 8%;
-        bottom: 0;
-        height: 2px;
-        background: #6f6f6f;
-      }
-
-      .select-label {
-        position: absolute;
-        font-family: "DXGothic", sans-serif;
-        font-size: clamp(12px, 1.7vw, 16px);
-        color: #6f6f6f;
-        text-transform: lowercase;
-        letter-spacing: 1px;
-        text-decoration: none;
-        transition: transform 0.2s ease, color 0.2s ease;
-      }
-
-      .select-label.left {
-        left: 6%;
-        bottom: 8px;
-      }
-
-      .select-label.center {
         left: 50%;
-        top: 10px;
-        transform: translateX(-50%);
+        bottom: 0;
+        width: 40px; 
+        height: 100%;
+        
+        transform-origin: 50% 100%;
+        transform: translateX(-50%) rotate(var(--angle));
+        
+        display: flex;
+        justify-content: center;
+        z-index: 1; /* 기본 레벨 */
       }
 
-      .select-label.right {
-        right: 6%;
-        bottom: 8px;
+      /* 3. 눈에 보이는 '회색 막대' 그리기 (공통) */
+      .select-ray::before,
+      .deco-ray::before {
+        content: '';
+        position: absolute;
+        bottom: 22.5%; /* 안쪽 구멍 위치 */
+        height: 47.5%; /* 선 길이 */
+        width: 4px;    /* 선 두께 */
+        background-color: #5e5e5e; 
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
-      .select-label:hover,
-      .select-label:focus-visible {
-        color: var(--black);
-        transform: translateY(-2px);
+      /* --- 클릭 가능한 버튼 (.select-ray) 전용 스타일 --- */
+      .select-ray {
+        text-decoration: none;
+        cursor: pointer;
+        z-index: 10; /* 장식용 선보다 위에 배치 */
       }
 
-      .select-label:focus-visible {
+      /* 텍스트 라벨 (버튼에만 있음) */
+      .select-ray .ray-label {
+        position: absolute;
+        bottom: 75%; 
+        transform: rotate(calc(-1 * var(--angle))); 
+        font-family: "DXGothic", sans-serif;
+        font-size: clamp(14px, 2vw, 18px);
+        color: #5e5e5e;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: color 0.3s ease;
+        padding-bottom: 5px;
+      }
+
+      /* --- 상호작용 (Hover) --- */
+      .select-ray:hover::before,
+      .select-ray:focus-visible::before {
+        background-color: var(--pink);
+        height: 55%; /* 길어짐 */
+        width: 6px;  /* 두꺼워짐 */
+      }
+
+      .select-ray:hover .ray-label,
+      .select-ray:focus-visible .ray-label {
+        color: var(--pink);
+        font-weight: 700;
+        transform: rotate(calc(-1 * var(--angle))) translateY(-5px);
+      }
+
+      .select-ray:focus-visible {
         outline: 2px solid var(--pink);
         outline-offset: 2px;
+      }
+
+      .ray-novel {
+        --angle: -80deg;
+      }
+
+      .ray-webtoon {
+        --angle: -40deg;
+      }
+
+      .ray-review {
+        --angle: 55deg;
       }
 
       .works-title {
@@ -603,6 +611,21 @@
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
+      .tag-novel {
+        width: auto;
+        min-width: 0;
+      }
+
+      .tag-webtoon {
+        width: 22%;
+        min-width: 90px;
+      }
+
+      .tag-review {
+        width: 19%;
+        min-width: 50px;
+      }
+
       .tag:hover,
       .tag:focus-visible {
         transform: translateY(-2px);
@@ -721,6 +744,19 @@
         }
         75% {
           transform: translateY(4px) rotate(2deg);
+        }
+      }
+
+      @keyframes ray-wiggle {
+        0%,
+        100% {
+          transform: translateX(-50%) rotate(var(--angle));
+        }
+        25% {
+          transform: translateX(-50%) rotate(calc(var(--angle) + 3deg));
+        }
+        75% {
+          transform: translateX(-50%) rotate(calc(var(--angle) - 3deg));
         }
       }
 
@@ -991,7 +1027,7 @@
                   <a class="slot" href="novel-5.html" aria-label="Novel slot 6"></a>
                 </div>
                 <div class="works-footer">
-                  <a class="tag" href="novel.html">Novel</a>
+                  <a class="tag tag-novel" href="novel.html">Novel</a>
                   <div class="mini-illustrations">
                     <img src="src/img/HeartEye.png" alt="Eye with heart pupil" />
                   </div>
@@ -999,7 +1035,7 @@
               </div>
               <div class="works-right">
                 <div class="works-panel">
-                  <a class="tag" href="webtoon.html">webtoon</a>
+                  <a class="tag tag-webtoon" href="webtoon.html">webtoon</a>
                   <div class="thumb-row">
                     <a class="thumb-box" href="webtoon-1.html">웹툰 1</a>
                     <a class="thumb-box" href="webtoon-2.html">웹툰 2</a>
@@ -1007,7 +1043,7 @@
                   </div>
                 </div>
                 <div class="works-panel review-panel">
-                  <a class="tag" href="review.html">Review</a>
+                  <a class="tag tag-review" href="review.html">Review</a>
                   <a
                     class="review-box"
                     href="review-1.html"
@@ -1015,11 +1051,35 @@
                   ></a>
                   <div class="select-bar" aria-label="Category selector">
                     <div class="select-arc">
-                      <a class="select-label left" href="novel.html">novel</a>
-                      <a class="select-label center" href="webtoon.html"
-                        >webtoon</a
-                      >
-                      <a class="select-label right" href="review.html">review</a>
+                      <a class="select-ray ray-novel" href="novel.html" style="--angle: -90deg;">
+                        <span class="ray-label">novel</span>
+                      </a>
+                      
+                      <div class="deco-ray" style="--angle: -80deg;"></div>
+                      <div class="deco-ray" style="--angle: -70deg;"></div>
+                      <div class="deco-ray" style="--angle: -60deg;"></div>
+                      <div class="deco-ray" style="--angle: -50deg;"></div>
+
+                      <a class="select-ray ray-webtoon" href="webtoon.html" style="--angle: -40deg;">
+                        <span class="ray-label">cartoon</span>
+                      </a>
+
+                      <div class="deco-ray" style="--angle: -30deg;"></div>
+                      <div class="deco-ray" style="--angle: -20deg;"></div>
+                      <div class="deco-ray" style="--angle: -10deg;"></div>
+                      <div class="deco-ray" style="--angle: 0deg;"></div> <div class="deco-ray" style="--angle: 10deg;"></div>
+                      <div class="deco-ray" style="--angle: 20deg;"></div>
+                      <div class="deco-ray" style="--angle: 30deg;"></div>
+                      <div class="deco-ray" style="--angle: 40deg;"></div>
+
+                      <a class="select-ray ray-review" href="review.html" style="--angle: 50deg;">
+                        <span class="ray-label">review</span>
+                      </a>
+
+                      <div class="deco-ray" style="--angle: 60deg;"></div>
+                      <div class="deco-ray" style="--angle: 70deg;"></div>
+                      <div class="deco-ray" style="--angle: 80deg;"></div>
+                      <div class="deco-ray" style="--angle: 90deg;"></div>
                     </div>
                   </div>
                 </div>
@@ -1089,7 +1149,7 @@
           .to(blink, { opacity: 0, duration: 0.2 })
           .to(eye, { opacity: 1, duration: 0.6 })
           .add(() => {
-            typeText("It's definitely your first love.", () => {
+            typeText("- It's definitely your first love.", () => {
               gsap
                 .timeline()
                 .to(transition, { opacity: 0, duration: 0.6, delay: 0.6 })
