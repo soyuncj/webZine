@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -9,20 +9,27 @@
     <style>
       .thumbs {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
       }
 
       .thumb {
         border: 2px solid #cfcfcf;
         padding: 14px;
-        text-align: center;
-        font-family: "DXGothic", sans-serif;
         background: #ffffff;
         text-decoration: none;
         color: inherit;
         display: block;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .thumb img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
 
       .thumb:hover,
@@ -42,15 +49,60 @@
       <section class="frame">
         <div class="header">
           <div class="logo">LOVE EYE EXAM</div>
-          <a class="back" href="index.html#main" aria-label="뒤로가기">&larr;</a>
+          <div class="select-bar" aria-label="Category selector">
+            <div class="select-arc">
+              <a class="select-ray" href="novel.html" style="--angle: -90deg">
+                <span class="ray-label">novel</span>
+              </a>
+              <div class="deco-ray" style="--angle: -80deg"></div>
+              <div class="deco-ray" style="--angle: -70deg"></div>
+              <div class="deco-ray" style="--angle: -60deg"></div>
+              <div class="deco-ray" style="--angle: -50deg"></div>
+              <a
+                class="select-ray active"
+                href="webtoon.html"
+                style="--angle: -40deg"
+              >
+                <span class="ray-label">webtoon</span>
+              </a>
+              <div class="deco-ray" style="--angle: -30deg"></div>
+              <div class="deco-ray" style="--angle: -20deg"></div>
+              <div class="deco-ray" style="--angle: -10deg"></div>
+              <div class="deco-ray" style="--angle: 0deg"></div>
+              <div class="deco-ray" style="--angle: 10deg"></div>
+              <div class="deco-ray" style="--angle: 20deg"></div>
+              <div class="deco-ray" style="--angle: 30deg"></div>
+              <div class="deco-ray" style="--angle: 40deg"></div>
+              <a class="select-ray" href="review.html" style="--angle: 50deg">
+                <span class="ray-label">review</span>
+              </a>
+              <div class="deco-ray" style="--angle: 60deg"></div>
+              <div class="deco-ray" style="--angle: 70deg"></div>
+              <div class="deco-ray" style="--angle: 80deg"></div>
+              <div class="deco-ray" style="--angle: 90deg"></div>
+            </div>
+          </div>
+          <a class="back" href="index.html#main" aria-label="뒤로가기"
+            >&larr;</a
+          >
         </div>
         <h1 class="title">Webtoon</h1>
         <div class="thumbs">
-          <a class="thumb" href="webtoon-1.html">웹툰 1</a>
-          <a class="thumb" href="webtoon-2.html">웹툰 2</a>
-          <a class="thumb" href="webtoon-3.html">웹툰 3</a>
-          <a class="thumb" href="webtoon-4.html">웹툰 4</a>
-          <a class="thumb" href="webtoon-5.html">웹툰 5</a>
+          <a class="thumb" href="webtoon-1.html"
+            ><img src="src/poster/poster1.jpg" alt="웹툰 1" loading="lazy"
+          /></a>
+          <a class="thumb" href="webtoon-2.html"
+            ><img src="src/poster/poster4.png" alt="웹툰 2" loading="lazy"
+          /></a>
+          <a class="thumb" href="webtoon-3.html"
+            ><img src="src/poster/poster3.png" alt="웹툰 3" loading="lazy"
+          /></a>
+          <a class="thumb" href="webtoon-4.html"
+            ><img src="src/poster/poster2.jpeg" alt="웹툰 4" loading="lazy"
+          /></a>
+          <a class="thumb" href="webtoon-5.html"
+            ><img src="src/poster/poster5.jpeg" alt="웹툰 5" loading="lazy"
+          /></a>
         </div>
       </section>
     </main>
