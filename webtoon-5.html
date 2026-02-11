@@ -1,11 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOVE EYE EXAM · 웹툰 5</title>
+    <title>LOVE EYE EXAM · 인사이드 부엉 - 000</title>
     <link rel="stylesheet" href="css/shared.css" />
     <link rel="stylesheet" href="css/detail.css" />
+    <style>
+      .episodes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .episode {
+        border: 2px solid var(--stroke);
+        padding: 20px;
+        text-align: center;
+        font-family: "DXGothic", sans-serif;
+        font-size: clamp(15px, 2vw, 18px);
+        background: var(--card);
+        text-decoration: none;
+        color: var(--gray);
+        display: block;
+        border-radius: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .episode:hover,
+      .episode:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        color: var(--pink);
+        border-color: var(--pink);
+      }
+
+      .episode:focus-visible {
+        outline: 2px solid var(--pink);
+        outline-offset: 2px;
+      }
+    </style>
   </head>
   <body>
     <main class="page">
@@ -15,8 +49,13 @@
           <div class="logo">LOVE EYE EXAM</div>
           <a class="back" href="webtoon.html" aria-label="뒤로가기">&larr;</a>
         </div>
-        <h1 class="title">웹툰 5</h1>
-        <div class="content">여기에 작품 내용을 추가해주세요.</div>
+        <h1 class="title">인사이드 부엉 - 000</h1>
+        <div class="episodes">
+          <a class="episode" href="webtoon-5-1.html">1화</a>
+          <a class="episode" href="webtoon-5-2.html">2화</a>
+          <a class="episode" href="webtoon-5-3.html">3화</a>
+          <a class="episode" href="webtoon-5-4.html">4화</a>
+        </div>
       </section>
     </main>
 

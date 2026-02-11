@@ -129,6 +129,42 @@ body {
   white-space: pre-wrap;
 }
 
+.content img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ep-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--stroke);
+}
+
+.ep-nav a {
+  font-family: "DXGothic", sans-serif;
+  font-size: clamp(13px, 1.8vw, 16px);
+  color: var(--gray);
+  text-decoration: none;
+  border: 1px solid var(--stroke);
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ep-nav a:hover,
+.ep-nav a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.ep-nav a:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
 .fab {
   position: fixed;
   right: 20px;
