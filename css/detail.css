@@ -1,0 +1,206 @@
+:root {
+  --card: #ffffff;
+  --stroke: #dedede;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --clip: #bdbdbd;
+}
+
+.theme-dark {
+  --paper: #14110f;
+  --black: #f7f2ec;
+  --gray: #cfc7bd;
+  --card: #1f1a18;
+  --stroke: #3a3430;
+  --shadow: rgba(0, 0, 0, 0.45);
+  --clip: #6f6862;
+}
+
+body {
+  background: radial-gradient(
+    circle at top,
+    #ffffff 0%,
+    #f6f2ee 45%,
+    #efe9e3 100%
+  );
+  background-color: var(--paper);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-dark body {
+  background: radial-gradient(
+    circle at top,
+    #24201c 0%,
+    #171411 55%,
+    #120f0d 100%
+  );
+}
+
+.clipboard {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  background: var(--card);
+  border-radius: 24px;
+  border: 2px solid var(--stroke);
+  padding: clamp(26px, 3.2vw, 44px);
+  box-shadow: 0 18px 40px var(--shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.clipboard::before {
+  content: "";
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(220px, 70%);
+  height: 26px;
+  background: linear-gradient(180deg, #d9d9d9, #b9b9b9);
+  border: 2px solid var(--clip);
+  border-bottom: none;
+  border-radius: 14px 14px 6px 6px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.clip-card {
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(180px, 60%);
+  height: 52px;
+  background: var(--card);
+  border-radius: 8px;
+  border: 2px solid var(--stroke);
+  display: grid;
+  place-items: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--stroke);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.back {
+  text-decoration: none;
+  color: var(--gray);
+  border: 1px solid var(--stroke);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back:hover,
+.back:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+.content {
+  font-family: "DXGothic", sans-serif;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+.fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  gap: 10px;
+  z-index: 10;
+}
+
+.fab button {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: var(--card);
+  color: var(--gray);
+  font-size: 12px;
+  font-family: "DXGothic", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 10px 24px var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.3s ease, color 0.3s ease;
+}
+
+.fab button:hover,
+.fab button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px var(--shadow);
+}
+
+.fab button:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+#scrollTop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.3s ease, color 0.3s ease;
+}
+
+#scrollTop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 640px) {
+  .clipboard {
+    padding-top: 54px;
+  }
+
+  .clip-card {
+    top: -54px;
+    height: 46px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clipboard {
+    border-radius: 16px;
+    padding: 46px 16px 20px;
+  }
+
+  .clipboard::before {
+    width: min(180px, 60%);
+    height: 22px;
+    top: -22px;
+  }
+
+  .clip-card {
+    top: -48px;
+    height: 40px;
+    width: min(150px, 55%);
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .fab {
+    right: 12px;
+    bottom: 12px;
+  }
+}

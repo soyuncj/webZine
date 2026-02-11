@@ -1,0 +1,64 @@
+:root {
+  --pink: #ff1493;
+  --paper: #fafaf8;
+  --black: #000000;
+  --gray: #5e5e5e;
+}
+
+@font-face {
+  font-family: "RockLocal";
+  src: url("../fonts/rockwellbold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DXGothic";
+  src: url("../fonts/DX고딕-40.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Rockwell", "Rockwell Nova", "Roboto Slab", serif;
+  color: var(--black);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 60px 20px 80px;
+}
+
+.logo {
+  font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+  font-size: clamp(20px, 2.4vw, 30px);
+  letter-spacing: 6px;
+}
+
+.title {
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--pink);
+  margin: 0 0 14px;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 40px 14px 60px;
+  }
+
+  .logo {
+    letter-spacing: 3px;
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}

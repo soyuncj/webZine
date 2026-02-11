@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,7 @@
 
       @font-face {
         font-family: "RockLocal";
-        src: url("fonts/rockwellbold.TTF") format("truetype");
+        src: url("fonts/rockwellbold.ttf") format("truetype");
         font-weight: normal;
         font-style: normal;
         font-display: swap;
@@ -429,7 +429,7 @@
         position: absolute;
         left: 50%;
         bottom: 0;
-        width: 40px; 
+        width: 28px;
         height: 100%;
         
         transform-origin: 50% 100%;
@@ -463,10 +463,10 @@
       /* 텍스트 라벨 (버튼에만 있음) */
       .select-ray .ray-label {
         position: absolute;
-        bottom: 75%; 
-        transform: rotate(calc(-1 * var(--angle))); 
+        bottom: 88%;
+        transform: rotate(calc(-1 * var(--angle)));
         font-family: "DXGothic", sans-serif;
-        font-size: clamp(14px, 2vw, 18px);
+        font-size: clamp(13px, 1.8vw, 16px);
         color: #5e5e5e;
         font-weight: 600;
         white-space: nowrap;
@@ -548,93 +548,51 @@
         gap: 18px;
       }
 
-      .works-profile {
+      .novel-list {
         display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 14px;
-        align-items: start;
+        gap: 6px;
+        grid-auto-rows: 1fr;
+        flex: 1;
+        font-family: "DXGothic", sans-serif;
       }
 
-      .eye-frame {
-        border: 2px solid #cfcfcf;
-        padding: 10px;
+      .novel-item {
         display: flex;
         align-items: center;
-        justify-content: center;
-        background: #fafafa;
-      }
-
-      .eye-frame img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      .profile-notes {
-        display: grid;
         gap: 8px;
-      }
-
-      .note {
-        border: 2px solid #cfcfcf;
         padding: 6px 10px;
-        font-family: "DXGothic", sans-serif;
-        font-size: 14px;
-        text-decoration: none;
-        color: inherit;
-        display: block;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .note:hover,
-      .note:focus-visible {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-      }
-
-      .note:focus-visible {
-        outline: 2px solid var(--pink);
-        outline-offset: 2px;
-      }
-
-      .works-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .slot {
-        min-height: 36px;
         border: 2px solid #cfcfcf;
         background: #ffffff;
-        display: block;
         text-decoration: none;
         color: inherit;
+        font-size: 13px;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      .slot:hover,
-      .slot:focus-visible {
+      .novel-item:hover,
+      .novel-item:focus-visible {
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
       }
 
-      .slot:focus-visible {
+      .novel-item:focus-visible {
         outline: 2px solid var(--pink);
         outline-offset: 2px;
       }
 
-      .works-footer {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 12px;
-        margin-top: auto;
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
       }
 
-      .works-footer .tag {
-        margin-left: -8px;
-        margin-bottom: -8px;
+      .dot--long {
+        background: #5b7fff;
+      }
+
+      .dot--short {
+        background: #34c77b;
       }
 
       .tag {
@@ -656,13 +614,13 @@
       }
 
       .tag-webtoon {
-        width: 22%;
-        min-width: 90px;
+        width: auto;
+        min-width: 0;
       }
 
       .tag-review {
-        width: 19%;
-        min-width: 50px;
+        width: auto;
+        min-width: 0;
       }
 
       .tag:hover,
@@ -676,12 +634,6 @@
         outline-offset: 2px;
       }
 
-      .mini-illustrations img {
-        width: 90px;
-        height: auto;
-        display: block;
-      }
-
       .works-panel {
         border: 2px solid #d5d5d5;
         padding: 16px;
@@ -691,45 +643,49 @@
         min-height: 200px;
       }
 
-      .thumb-row {
+      .works-review {
+        grid-column: 1 / -1;
+        border: 2px solid #d5d5d5;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 14px;
+      }
+
+      .poster-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
       }
 
-      .thumb-box {
-        border: 2px solid #cfcfcf;
-        padding: 12px 6px;
-        font-family: "DXGothic", sans-serif;
-        text-align: center;
-        font-size: 13px;
-        background: #ffffff;
+      .poster-card {
         display: block;
+        border: 2px solid #cfcfcf;
+        border-radius: 4px;
+        overflow: hidden;
+        background: #ffffff;
         text-decoration: none;
-        color: inherit;
+        aspect-ratio: 3 / 4;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      .thumb-box:hover,
-      .thumb-box:focus-visible {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      .poster-card:hover,
+      .poster-card:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.14);
       }
 
-      .thumb-box:focus-visible {
+      .poster-card:focus-visible {
         outline: 2px solid var(--pink);
         outline-offset: 2px;
       }
 
-      .review-panel {
-        min-height: 220px;
-        position: relative;
-      }
-
-      .review-panel img {
+      .poster-card img {
         width: 100%;
-        max-width: 220px;
-        align-self: center;
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
 
       .review-box {
@@ -755,13 +711,6 @@
       .review-box:focus-visible {
         outline: 2px solid var(--pink);
         outline-offset: 2px;
-      }
-
-      .review-panel .select-bar {
-        position: absolute;
-        right: -4px;
-        bottom: 16px;
-        margin-top: 0;
       }
 
       @keyframes heartbeat {
@@ -839,25 +788,31 @@
           justify-content: center;
         }
 
-        .review-panel .select-bar {
-          position: static;
-          margin-top: 16px;
-        }
-
         .works-layout {
           grid-template-columns: 1fr;
         }
 
-        .works-profile {
-          grid-template-columns: 1fr;
+        .novel-item {
+          font-size: 12px;
+          padding: 5px 8px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .landing {
+          padding: 32px 14px 48px;
         }
 
-        .works-footer {
-          align-items: center;
+        .main {
+          padding: 40px 14px 60px;
         }
 
-        .mini-illustrations img {
-          width: 72px;
+        .works-left {
+          padding: 12px;
+        }
+
+        .works-review {
+          padding: 12px;
         }
       }
     </style>
@@ -1050,79 +1005,70 @@
           <div class="clipboard">
             <div class="works-layout">
               <div class="works-left">
-                <div class="works-profile">
-                  <div class="eye-frame">
-                    <img src="src/img/HeartEye.png" alt="Eye with heart pupil" />
-                  </div>
-                  <div class="profile-notes">
-                    <a class="note" href="novel-1.html">첫사랑이야메고 - 임도건</a>
-                    <a class="note" href="novel-2.html">어쩌구사랑 - 서준빈</a>
-                    <a class="note" href="novel-3.html">유리어쩌구사랑 - 김윤서</a>
-                  </div>
-                </div>
-                <div class="works-grid">
-                  <a class="slot" href="novel-1.html" aria-label="Novel slot 1"></a>
-                  <a class="slot" href="novel-2.html" aria-label="Novel slot 2"></a>
-                  <a class="slot" href="novel-3.html" aria-label="Novel slot 3"></a>
-                  <a class="slot" href="novel-4.html" aria-label="Novel slot 4"></a>
-                  <a class="slot" href="novel-5.html" aria-label="Novel slot 5"></a>
-                  <a class="slot" href="novel-5.html" aria-label="Novel slot 6"></a>
-                </div>
-                <div class="works-footer">
-                  <a class="tag tag-novel" href="novel.html">Novel</a>
-                  <div class="mini-illustrations">
-                    <img src="src/img/HeartEye.png" alt="Eye with heart pupil" />
-                  </div>
+                <a class="tag tag-novel" href="novel.html">Novel</a>
+                <div class="novel-list">
+                  <a class="novel-item" href="novel-1.html"><span class="dot dot--long"></span>기적의 소녀 - 백륭</a>
+                  <a class="novel-item" href="novel-2.html"><span class="dot dot--long"></span>김제로는 이승에 가고 싶다 - 000</a>
+                  <a class="novel-item" href="novel-3.html"><span class="dot dot--long"></span>디펜스 메커니즘 - 믕뮤</a>
+                  <a class="novel-item" href="novel-4.html"><span class="dot dot--long"></span>아프니, 그러게 왜 거기 서 있어 - 간장글 000</a>
+                  <a class="novel-item" href="novel-5.html"><span class="dot dot--long"></span>포도 밭 주인 이름은 - 애효</a>
+                  <a class="novel-item" href="novel-6.html"><span class="dot dot--long"></span>인사팀으로 오시길 바랍니다 - 물개0</a>
+                  <a class="novel-item" href="novel-7.html"><span class="dot dot--long"></span>파괴왕 김영우 - 무광</a>
+                  <a class="novel-item" href="novel-8.html"><span class="dot dot--long"></span>안정적 복수 - 화각</a>
+                  <a class="novel-item" href="novel-9.html"><span class="dot dot--short"></span>사와 랑 사이 - 종종</a>
+                  <a class="novel-item" href="novel-10.html"><span class="dot dot--short"></span>샹그리아 - 사라내</a>
+                  <a class="novel-item" href="novel-11.html"><span class="dot dot--short"></span>시린 온기 - 에효</a>
+                  <a class="novel-item" href="novel-12.html"><span class="dot dot--short"></span>친절한 뱀파이어 아저씨 - 귀공자</a>
+                  <a class="novel-item" href="novel-13.html"><span class="dot dot--short"></span>ERRoR : sEoUL - 배동현</a>
+                  <a class="novel-item" href="novel-14.html"><span class="dot dot--short"></span>Message In A Bottle - 김규리, 인재</a>
                 </div>
               </div>
               <div class="works-right">
                 <div class="works-panel">
-                  <a class="tag tag-webtoon" href="webtoon.html">webtoon</a>
-                  <div class="thumb-row">
-                    <a class="thumb-box" href="webtoon-1.html">웹툰 1</a>
-                    <a class="thumb-box" href="webtoon-2.html">웹툰 2</a>
-                    <a class="thumb-box" href="webtoon-3.html">웹툰 3</a>
+                  <a class="tag tag-webtoon" href="webtoon.html">Webtoon</a>
+                  <div class="poster-grid">
+                    <a class="poster-card" href="webtoon-1.html"><img src="src/poster/poster1.jpg" alt="웹툰 1" loading="lazy" /></a>
+                    <a class="poster-card" href="webtoon-2.html"><img src="src/poster/poster2.jpeg" alt="웹툰 2" loading="lazy" /></a>
+                    <a class="poster-card" href="webtoon-3.html"><img src="src/poster/poster3.png" alt="웹툰 3" loading="lazy" /></a>
+                    <a class="poster-card" href="webtoon-4.html"><img src="src/poster/poster4.png" alt="웹툰 4" loading="lazy" /></a>
+                    <a class="poster-card" href="webtoon-5.html"><img src="src/poster/poster5.jpeg" alt="웹툰 5" loading="lazy" /></a>
                   </div>
                 </div>
-                <div class="works-panel review-panel">
-                  <a class="tag tag-review" href="review.html">Review</a>
-                  <a
-                    class="review-box"
-                    href="review-1.html"
-                    aria-label="Review detail"
-                  ></a>
-                  <div class="select-bar" aria-label="Category selector">
-                    <div class="select-arc">
-                      <a class="select-ray ray-novel" href="novel.html" style="--angle: -90deg;">
-                        <span class="ray-label">novel</span>
-                      </a>
-                      
-                      <div class="deco-ray" style="--angle: -80deg;"></div>
-                      <div class="deco-ray" style="--angle: -70deg;"></div>
-                      <div class="deco-ray" style="--angle: -60deg;"></div>
-                      <div class="deco-ray" style="--angle: -50deg;"></div>
+              </div>
+              <div class="works-review">
+                <a class="tag tag-review" href="review.html">Review</a>
+                <a class="review-box" href="review-1.html" aria-label="Review detail"></a>
+                <div class="select-bar" aria-label="Category selector">
+                  <div class="select-arc">
+                    <a class="select-ray ray-novel" href="novel.html" style="--angle: -90deg;">
+                      <span class="ray-label">novel</span>
+                    </a>
 
-                      <a class="select-ray ray-webtoon" href="webtoon.html" style="--angle: -40deg;">
-                        <span class="ray-label">cartoon</span>
-                      </a>
+                    <div class="deco-ray" style="--angle: -80deg;"></div>
+                    <div class="deco-ray" style="--angle: -70deg;"></div>
+                    <div class="deco-ray" style="--angle: -60deg;"></div>
+                    <div class="deco-ray" style="--angle: -50deg;"></div>
 
-                      <div class="deco-ray" style="--angle: -30deg;"></div>
-                      <div class="deco-ray" style="--angle: -20deg;"></div>
-                      <div class="deco-ray" style="--angle: -10deg;"></div>
-                      <div class="deco-ray" style="--angle: 0deg;"></div> <div class="deco-ray" style="--angle: 10deg;"></div>
-                      <div class="deco-ray" style="--angle: 20deg;"></div>
-                      <div class="deco-ray" style="--angle: 30deg;"></div>
-                      <div class="deco-ray" style="--angle: 40deg;"></div>
+                    <a class="select-ray ray-webtoon" href="webtoon.html" style="--angle: -40deg;">
+                      <span class="ray-label">webtoon</span>
+                    </a>
 
-                      <a class="select-ray ray-review" href="review.html" style="--angle: 50deg;">
-                        <span class="ray-label">review</span>
-                      </a>
+                    <div class="deco-ray" style="--angle: -30deg;"></div>
+                    <div class="deco-ray" style="--angle: -20deg;"></div>
+                    <div class="deco-ray" style="--angle: -10deg;"></div>
+                    <div class="deco-ray" style="--angle: 0deg;"></div> <div class="deco-ray" style="--angle: 10deg;"></div>
+                    <div class="deco-ray" style="--angle: 20deg;"></div>
+                    <div class="deco-ray" style="--angle: 30deg;"></div>
+                    <div class="deco-ray" style="--angle: 40deg;"></div>
 
-                      <div class="deco-ray" style="--angle: 60deg;"></div>
-                      <div class="deco-ray" style="--angle: 70deg;"></div>
-                      <div class="deco-ray" style="--angle: 80deg;"></div>
-                      <div class="deco-ray" style="--angle: 90deg;"></div>
-                    </div>
+                    <a class="select-ray ray-review" href="review.html" style="--angle: 50deg;">
+                      <span class="ray-label">review</span>
+                    </a>
+
+                    <div class="deco-ray" style="--angle: 60deg;"></div>
+                    <div class="deco-ray" style="--angle: 70deg;"></div>
+                    <div class="deco-ray" style="--angle: 80deg;"></div>
+                    <div class="deco-ray" style="--angle: 90deg;"></div>
                   </div>
                 </div>
               </div>
@@ -1133,74 +1079,6 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script>
-      const landing = document.getElementById("landing");
-      const transition = document.getElementById("transition");
-      const balloon = document.getElementById("balloon");
-      const blink = document.getElementById("blink");
-      const eye = document.getElementById("eye");
-      const typewriter = document.getElementById("typewriter");
-      const main = document.getElementById("main");
-
-      let hasPlayed = false;
-
-      gsap.set(".balloon-float", { xPercent: -50, yPercent: -50, scale: 0.3 });
-
-      const floatTween = gsap.to(".balloon-float", {
-        y: -60,
-        duration: 2,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: 2,
-        paused: true,
-      });
-
-      function typeText(text, callback) {
-        let index = 0;
-        typewriter.textContent = "";
-        const timer = setInterval(() => {
-          typewriter.textContent += text[index];
-          index += 1;
-          if (index >= text.length) {
-            clearInterval(timer);
-            if (callback) callback();
-          }
-        }, 55);
-      }
-
-      landing.addEventListener("click", () => {
-        if (hasPlayed) return;
-        hasPlayed = true;
-
-        transition.style.opacity = 1;
-        transition.style.pointerEvents = "auto";
-
-        const tl = gsap.timeline();
-
-        tl.to(landing, { opacity: 0, duration: 0.6, ease: "power2.out" })
-          .set(landing, { display: "none" })
-          .set(transition, { opacity: 1 })
-          .to(balloon, { opacity: 1, duration: 0.6 })
-          .add(() => floatTween.play())
-          .to(balloon, {
-            opacity: 0,
-            duration: 0.4,
-            delay: floatTween.totalDuration(),
-          })
-          .to(blink, { opacity: 1, duration: 0.2 })
-          .to(blink, { opacity: 0, duration: 0.2 })
-          .to(eye, { opacity: 1, duration: 0.6 })
-          .add(() => {
-            typeText("- It's definitely your first love.", () => {
-              gsap
-                .timeline()
-                .to(transition, { opacity: 0, duration: 0.6, delay: 0.6 })
-                .set(transition, { display: "none" })
-                .set(main, { display: "block" })
-                .fromTo(main, { opacity: 0 }, { opacity: 1, duration: 0.8 });
-            });
-          });
-      });
-    </script>
+    <script src="js/index.js"></script>
   </body>
 </html>

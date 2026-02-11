@@ -1,98 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LOVE EYE EXAM · Novel</title>
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/category.css" />
     <style>
-      :root {
-        --pink: #ff1493;
-        --paper: #fafaf8;
-        --black: #000000;
-        --gray: #5e5e5e;
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
       }
 
-      @font-face {
-        font-family: "RockLocal";
-        src: url("fonts/rockwellbold.TTF") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
+      .dot--long {
+        background: #5b7fff;
       }
 
-      @font-face {
-        font-family: "DXGothic";
-        src: url("fonts/DX고딕-40.otf") format("opentype");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: "Rockwell", "Rockwell Nova", "Roboto Slab", serif;
-        color: var(--black);
-        background: radial-gradient(
-          circle at top,
-          #ffffff 0%,
-          #f6f2ee 45%,
-          #efe9e3 100%
-        );
-      }
-
-      .page {
-        min-height: 100vh;
-        padding: 60px 20px 80px;
-      }
-
-      .frame {
-        max-width: 960px;
-        margin: 0 auto;
-        background: #ffffff;
-        border-radius: 12px;
-        border: 2px solid #dedede;
-        padding: clamp(20px, 3vw, 36px);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        border-bottom: 1px solid #e2e2e2;
-        padding-bottom: 16px;
-        margin-bottom: 20px;
-      }
-
-      .logo {
-        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
-        font-size: clamp(20px, 2.4vw, 30px);
-        letter-spacing: 6px;
-      }
-
-      .back {
-        text-decoration: none;
-        color: var(--gray);
-        font-family: "DXGothic", sans-serif;
-        border: 1px solid #d5d5d5;
-        padding: 6px 10px;
-        border-radius: 999px;
-      }
-
-      .title {
-        font-size: clamp(22px, 3vw, 32px);
-        color: var(--pink);
-        margin: 0 0 14px;
+      .dot--short {
+        background: #34c77b;
       }
 
       .list {
         display: grid;
-        gap: 10px;
+        gap: 8px;
         font-family: "DXGothic", sans-serif;
       }
 
@@ -102,8 +34,12 @@
         background: #ffffff;
         text-decoration: none;
         color: inherit;
-        display: block;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .item:hover,
@@ -123,15 +59,58 @@
       <section class="frame">
         <div class="header">
           <div class="logo">LOVE EYE EXAM</div>
-          <a class="back" href="index.html#main">Back to Works</a>
+          <a class="back" href="index.html#main" aria-label="뒤로가기"
+            >&larr;</a
+          >
         </div>
         <h1 class="title">Novel</h1>
         <div class="list">
-          <a class="item" href="novel-1.html">첫사랑이야메고 - 임도건</a>
-          <a class="item" href="novel-2.html">어쩌구사랑 - 서준빈</a>
-          <a class="item" href="novel-3.html">유리어쩌구사랑 - 김윤서</a>
-          <a class="item" href="novel-4.html">추가 작품 1</a>
-          <a class="item" href="novel-5.html">추가 작품 2</a>
+          <a class="item" href="novel-1.html"
+            ><span class="dot dot--long"></span>기적의 소녀 - 백륭</a
+          >
+          <a class="item" href="novel-2.html"
+            ><span class="dot dot--long"></span>김제로는 이승에 가고 싶다 -
+            000</a
+          >
+          <a class="item" href="novel-3.html"
+            ><span class="dot dot--long"></span>디펜스 메커니즘 - 믕뮤</a
+          >
+          <a class="item" href="novel-4.html"
+            ><span class="dot dot--long"></span>아프니, 그러게 왜 거기 서 있어 -
+            간장글 000</a
+          >
+          <a class="item" href="novel-5.html"
+            ><span class="dot dot--long"></span>포도 밭 주인 이름은 - 애효
+          </a>
+          <a class="item" href="novel-6.html"
+            ><span class="dot dot--long"></span>인사팀으로 오시길 바랍니다 -
+            물개0
+          </a>
+          <a class="item" href="novel-7.html"
+            ><span class="dot dot--long"></span>파괴왕 김영우 - 무광
+          </a>
+          <a class="item" href="novel-8.html"
+            ><span class="dot dot--long"></span>안정적 복수 - 화각
+          </a>
+          <a class="item" href="novel-9.html"
+            ><span class="dot dot--short"></span>사와 랑 사이 - 종종
+          </a>
+          <a class="item" href="novel-10.html"
+            ><span class="dot dot--short"></span>샹그리아 - 사라내
+          </a>
+          <a class="item" href="novel-11.html"
+            ><span class="dot dot--short"></span>시린 온기 - 에효
+          </a>
+          <a class="item" href="novel-12.html"
+            ><span class="dot dot--short"></span>친절한 뱀파이어 아저씨 - 귀공자
+          </a>
+          <a class="item" href="novel-13.html"
+            ><span class="dot dot--short"></span>ERRoR : sEoUL - 배동현
+          </a>
+          <a class="item" href="novel-14.html"
+            ><span class="dot dot--short"></span>Message In A Bottle - 김규리,
+            인재
+          </a>
         </div>
       </section>
     </main>

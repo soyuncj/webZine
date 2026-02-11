@@ -1,219 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LOVE EYE EXAM · 웹툰 3</title>
-    <style>
-      :root {
-        --pink: #ff1493;
-        --paper: #fafaf8;
-        --black: #000000;
-        --gray: #5e5e5e;
-        --card: #ffffff;
-        --stroke: #dedede;
-        --shadow: rgba(0, 0, 0, 0.08);
-        --clip: #bdbdbd;
-      }
-
-      .theme-dark {
-        --paper: #14110f;
-        --black: #f7f2ec;
-        --gray: #cfc7bd;
-        --card: #1f1a18;
-        --stroke: #3a3430;
-        --shadow: rgba(0, 0, 0, 0.45);
-        --clip: #6f6862;
-      }
-
-      @font-face {
-        font-family: "RockLocal";
-        src: url("fonts/rockwellbold.TTF") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "DXGothic";
-        src: url("fonts/DX고딕-40.otf") format("opentype");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: "Rockwell", "Rockwell Nova", "Roboto Slab", serif;
-        color: var(--black);
-        background: radial-gradient(
-          circle at top,
-          #ffffff 0%,
-          #f6f2ee 45%,
-          #efe9e3 100%
-        );
-        background-color: var(--paper);
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      .theme-dark body {
-        background: radial-gradient(
-          circle at top,
-          #24201c 0%,
-          #171411 55%,
-          #120f0d 100%
-        );
-      }
-
-      .page {
-        min-height: 100vh;
-        padding: 60px 20px 80px;
-      }
-
-      .clipboard {
-        max-width: 960px;
-        margin: 0 auto;
-        position: relative;
-        background: var(--card);
-        border-radius: 24px;
-        border: 2px solid var(--stroke);
-        padding: clamp(26px, 3.2vw, 44px);
-        box-shadow: 0 18px 40px var(--shadow);
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-      }
-
-      .clipboard::before {
-        content: "";
-        position: absolute;
-        top: -26px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(220px, 70%);
-        height: 26px;
-        background: linear-gradient(180deg, #d9d9d9, #b9b9b9);
-        border: 2px solid var(--clip);
-        border-bottom: none;
-        border-radius: 14px 14px 6px 6px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-      }
-
-      .clip-card {
-        position: absolute;
-        top: -58px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(180px, 60%);
-        height: 52px;
-        background: var(--card);
-        border-radius: 8px;
-        border: 2px solid var(--stroke);
-        display: grid;
-        place-items: center;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        font-size: 14px;
-        color: var(--gray);
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        border-bottom: 1px solid var(--stroke);
-        padding-bottom: 16px;
-        margin-bottom: 20px;
-      }
-
-      .logo {
-        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
-        font-size: clamp(20px, 2.4vw, 30px);
-        letter-spacing: 6px;
-      }
-
-      .back {
-        text-decoration: none;
-        color: var(--gray);
-        font-family: "DXGothic", sans-serif;
-        border: 1px solid var(--stroke);
-        padding: 6px 10px;
-        border-radius: 999px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .back:hover,
-      .back:focus-visible {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-      }
-
-      .back:focus-visible {
-        outline: 2px solid var(--pink);
-        outline-offset: 2px;
-      }
-
-      .title {
-        font-size: clamp(22px, 3vw, 32px);
-        color: var(--pink);
-        margin: 0 0 14px;
-      }
-
-      .content {
-        font-family: "DXGothic", sans-serif;
-        color: var(--gray);
-        line-height: 1.8;
-      }
-
-      .fab {
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        display: grid;
-        gap: 10px;
-        z-index: 10;
-      }
-
-      .fab button {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 1px solid var(--stroke);
-        background: var(--card);
-        color: var(--gray);
-        font-size: 12px;
-        font-family: "DXGothic", sans-serif;
-        cursor: pointer;
-        box-shadow: 0 10px 24px var(--shadow);
-        transition: transform 0.2s ease, box-shadow 0.2s ease,
-          background-color 0.3s ease, color 0.3s ease;
-      }
-
-      .fab button:hover,
-      .fab button:focus-visible {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 26px var(--shadow);
-      }
-
-      .fab button:focus-visible {
-        outline: 2px solid var(--pink);
-        outline-offset: 2px;
-      }
-
-      @media (max-width: 640px) {
-        .clipboard {
-          padding-top: 54px;
-        }
-
-        .clip-card {
-          top: -54px;
-          height: 46px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/detail.css" />
   </head>
   <body>
     <main class="page">
@@ -221,7 +13,7 @@
         <div class="clip-card">Love Eye Exam</div>
         <div class="header">
           <div class="logo">LOVE EYE EXAM</div>
-          <a class="back" href="index.html#main">Back to Works</a>
+          <a class="back" href="webtoon.html" aria-label="뒤로가기">&larr;</a>
         </div>
         <h1 class="title">웹툰 3</h1>
         <div class="content">여기에 작품 내용을 추가해주세요.</div>
@@ -237,18 +29,6 @@
       </button>
     </div>
 
-    <script>
-      const root = document.documentElement;
-      const themeToggle = document.getElementById("themeToggle");
-      const scrollTop = document.getElementById("scrollTop");
-
-      themeToggle.addEventListener("click", () => {
-        root.classList.toggle("theme-dark");
-      });
-
-      scrollTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    </script>
+    <script src="js/detail.js"></script>
   </body>
 </html>
