@@ -361,6 +361,18 @@
         background: #000;
       }
 
+      .click-me {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Rockwell", "Rockwell Nova", "Roboto Slab", serif;
+        font-size: clamp(16px, 3vw, 24px);
+        color: var(--paper);
+        letter-spacing: 2px;
+        opacity: 0;
+      }
+
       .eye {
         flex-direction: column;
         gap: 24px;
@@ -984,9 +996,9 @@
 
       <section id="transition" class="transition" aria-hidden="true">
         <div id="balloon" class="panel balloon">
-          <!-- Replace with heart-shaped hot air balloon image -->
           <img class="balloon-base" src="src/img/new1_3.png" alt="Heart balloon" />
           <img class="balloon-float" src="src/img/newImg2.png" alt="Floating heart" />
+          <div class="click-me">click me!</div>
         </div>
         <div id="blink" class="panel blink"></div>
         <div id="eye" class="panel eye">
@@ -1028,9 +1040,9 @@
                   <a class="tag tag-webtoon" href="webtoon.html">Webtoon</a>
                   <div class="poster-grid">
                     <a class="poster-card" href="webtoon-1.html"><img src="src/poster/poster1.jpg" alt="웹툰 1" loading="lazy" /></a>
-                    <a class="poster-card" href="webtoon-2.html"><img src="src/poster/poster2.jpeg" alt="웹툰 2" loading="lazy" /></a>
+                    <a class="poster-card" href="webtoon-2.html"><img src="src/poster/poster4.png" alt="웹툰 2" loading="lazy" /></a>
                     <a class="poster-card" href="webtoon-3.html"><img src="src/poster/poster3.png" alt="웹툰 3" loading="lazy" /></a>
-                    <a class="poster-card" href="webtoon-4.html"><img src="src/poster/poster4.png" alt="웹툰 4" loading="lazy" /></a>
+                    <a class="poster-card" href="webtoon-4.html"><img src="src/poster/poster2.jpeg" alt="웹툰 4" loading="lazy" /></a>
                     <a class="poster-card" href="webtoon-5.html"><img src="src/poster/poster5.jpeg" alt="웹툰 5" loading="lazy" /></a>
                   </div>
                 </div>

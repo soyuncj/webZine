@@ -15,6 +15,7 @@
   }
 
   var hasPlayed = false;
+  var balloonPhase = false;
   var prefersReducedMotion =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -26,7 +27,7 @@
     duration: 2,
     ease: "sine.inOut",
     yoyo: true,
-    repeat: 2,
+    repeat: -1,
     paused: true,
   });
 
@@ -43,7 +44,7 @@
         typewriterTimer = null;
         if (callback) callback();
       }
-    }, 55);
+    }, 82);
   }
 
   window.addEventListener("beforeunload", function () {
@@ -52,6 +53,26 @@
       typewriterTimer = null;
     }
   });
+
+  function playAfterBalloon() {
+    floatTween.kill();
+
+    var tl = gsap.timeline();
+    tl.to(balloon, { opacity: 0, duration: 0.4 })
+      .to(blink, { opacity: 1, duration: 0.3 })
+      .to(blink, { opacity: 0, duration: 0.3 })
+      .to(eye, { opacity: 1, duration: 0.9 })
+      .add(function () {
+        typeText("- It's definitely your first love.", function () {
+          gsap
+            .timeline()
+            .to(transition, { opacity: 0, duration: 0.9, delay: 0.9 })
+            .set(transition, { display: "none" })
+            .set(main, { display: "block" })
+            .fromTo(main, { opacity: 0 }, { opacity: 1, duration: 0.8 });
+        });
+      });
+  }
 
   if (prefersReducedMotion) {
     landing.addEventListener("click", function () {
@@ -64,6 +85,12 @@
     });
     return;
   }
+
+  transition.addEventListener("click", function () {
+    if (!balloonPhase) return;
+    balloonPhase = false;
+    playAfterBalloon();
+  });
 
   landing.addEventListener("click", function () {
     if (hasPlayed) return;
@@ -80,23 +107,20 @@
       .to(balloon, { opacity: 1, duration: 0.6 })
       .add(function () {
         floatTween.play();
-      })
-      .to(balloon, {
-        opacity: 0,
-        duration: 0.4,
-        delay: floatTween.totalDuration(),
-      })
-      .to(blink, { opacity: 1, duration: 0.2 })
-      .to(blink, { opacity: 0, duration: 0.2 })
-      .to(eye, { opacity: 1, duration: 0.6 })
-      .add(function () {
-        typeText("- It's definitely your first love.", function () {
-          gsap
-            .timeline()
-            .to(transition, { opacity: 0, duration: 0.6, delay: 0.6 })
-            .set(transition, { display: "none" })
-            .set(main, { display: "block" })
-            .fromTo(main, { opacity: 0 }, { opacity: 1, duration: 0.8 });
+        balloonPhase = true;
+        gsap.to(".click-me", {
+          opacity: 1,
+          duration: 0.4,
+          delay: 0.5,
+          onComplete: function () {
+            gsap.to(".click-me", {
+              opacity: 0.5,
+              duration: 1.5,
+              ease: "sine.inOut",
+              yoyo: true,
+              repeat: -1,
+            });
+          },
         });
       });
   });
