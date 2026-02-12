@@ -14,6 +14,9 @@
     } else {
       root.classList.remove("theme-dark");
     }
+    if (themeToggle) {
+      themeToggle.textContent = isDark ? "LM" : "DM";
+    }
   }
 
   var stored = localStorage.getItem(THEME_KEY);
@@ -40,6 +43,7 @@
     themeToggle.addEventListener("click", function () {
       var isDark = root.classList.toggle("theme-dark");
       localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+      themeToggle.textContent = isDark ? "LM" : "DM";
     });
   }
 

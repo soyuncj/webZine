@@ -21,6 +21,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "MapoGoldenPier";
+  src: url("../fonts/MapoGoldenPier.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -60,5 +68,113 @@ body {
 
   .title {
     font-size: 20px;
+  }
+}
+
+/* Select-bar arc navigation (fixed sidebar) */
+.select-bar {
+  position: fixed;
+  left: 40px;
+  bottom: 20px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.select-arc {
+  position: relative;
+  width: 160px;
+  height: 80px;
+  overflow: visible;
+}
+
+.select-ray,
+.deco-ray {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 28px;
+  height: 100%;
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) rotate(var(--angle));
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.select-ray::before,
+.deco-ray::before {
+  content: '';
+  position: absolute;
+  bottom: 22.5%;
+  height: 47.5%;
+  width: 4px;
+  background-color: #5e5e5e;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.select-ray {
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.select-ray .ray-label {
+  position: absolute;
+  bottom: 88%;
+  transform: rotate(calc(-1 * var(--angle)));
+  font-family: "DXGothic", sans-serif;
+  font-size: 12px;
+  color: #5e5e5e;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.select-ray:hover::before,
+.select-ray:focus-visible::before {
+  background-color: var(--pink);
+  height: 55%;
+  width: 6px;
+}
+
+.select-ray:hover .ray-label,
+.select-ray:focus-visible .ray-label {
+  color: var(--pink);
+  font-weight: 700;
+  transform: rotate(calc(-1 * var(--angle))) translateY(-5px);
+}
+
+.select-ray:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+.select-ray.active::before {
+  background-color: var(--pink);
+  height: 55%;
+  width: 6px;
+}
+
+.select-ray.active .ray-label {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .select-bar {
+    left: 12px;
+    bottom: 12px;
+  }
+
+  .select-arc {
+    width: 120px;
+    height: 60px;
+  }
+
+  .select-ray .ray-label {
+    font-size: 10px;
   }
 }
