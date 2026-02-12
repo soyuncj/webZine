@@ -150,6 +150,10 @@ body {
   font-family: "MapoGoldenPier", sans-serif;
 }
 
+.webtoon .logo {
+  font-family: "DXGothic", sans-serif;
+}
+
 .content img {
   width: 100%;
   height: auto;
