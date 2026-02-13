@@ -436,11 +436,13 @@
         color: #9ca3af;
         font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
         line-height: 1;
+        opacity: var(--opa);
         animation: float-letter var(--dur) var(--delay) ease-in-out infinite;
       }
 
       .vision-landolt {
         position: absolute;
+        opacity: var(--opa);
         animation: float-landolt var(--dur) var(--delay) ease-in-out infinite;
       }
 
@@ -483,19 +485,13 @@
       .corner-br { bottom: 8px; right: 8px; border-bottom-width: 2px; border-right-width: 2px; }
 
       @keyframes float-letter {
-        0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-        15%  { opacity: var(--opa); }
-        50%  { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: var(--opa); }
-        85%  { opacity: var(--opa); }
-        100% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        50%      { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); }
       }
 
       @keyframes float-landolt {
-        0%   { transform: rotate(var(--init-rot)) translate(0, 0); opacity: 0; }
-        15%  { opacity: var(--opa); }
-        50%  { transform: rotate(calc(var(--init-rot) + var(--rot))) translate(var(--dx), var(--dy)); opacity: var(--opa); }
-        85%  { opacity: var(--opa); }
-        100% { transform: rotate(var(--init-rot)) translate(0, 0); opacity: 0; }
+        0%, 100% { transform: rotate(var(--init-rot)) translate(0, 0); }
+        50%      { transform: rotate(calc(var(--init-rot) + var(--rot))) translate(var(--dx), var(--dy)); }
       }
 
       @keyframes pulse-circle-1 {
