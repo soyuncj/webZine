@@ -389,12 +389,7 @@
       .main {
         display: none;
         padding: 60px 20px 80px;
-        background: radial-gradient(
-          circle at top,
-          #ffffff 0%,
-          #f6f2ee 45%,
-          #efe9e3 100%
-        );
+        background: linear-gradient(to bottom right, #f9fafb, #ffffff, #fdf2f8);
         position: relative;
         overflow: hidden;
       }
@@ -406,6 +401,111 @@
         flex-direction: column;
         align-items: center;
         gap: 22px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* === Vision Test Background === */
+      .vision-bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .vision-grid {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(#ec4899 1px, transparent 1px),
+          linear-gradient(90deg, #ec4899 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.02;
+      }
+
+      .vision-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 0%, transparent 50%, rgba(255,255,255,0.3) 100%);
+      }
+
+      .vision-letter {
+        position: absolute;
+        font-weight: bold;
+        color: #9ca3af;
+        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+        line-height: 1;
+        animation: float-letter var(--dur) var(--delay) ease-in-out infinite;
+      }
+
+      .vision-landolt {
+        position: absolute;
+        animation: float-landolt var(--dur) var(--delay) ease-in-out infinite;
+      }
+
+      .vision-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .vision-circle-1 {
+        width: 700px;
+        height: 700px;
+        border: 1px solid #fce7f3;
+        animation: pulse-circle-1 12s ease-in-out infinite;
+      }
+
+      .vision-circle-2 {
+        width: 900px;
+        height: 900px;
+        border: 1px solid #f3f4f6;
+        animation: pulse-circle-2 15s 2s ease-in-out infinite;
+      }
+
+      .vision-corner {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-color: #fbcfe8;
+        border-style: solid;
+        border-width: 0;
+        opacity: 0.4;
+      }
+
+      .corner-tl { top: 8px; left: 8px; border-top-width: 2px; border-left-width: 2px; }
+      .corner-tr { top: 8px; right: 8px; border-top-width: 2px; border-right-width: 2px; }
+      .corner-bl { bottom: 8px; left: 8px; border-bottom-width: 2px; border-left-width: 2px; }
+      .corner-br { bottom: 8px; right: 8px; border-bottom-width: 2px; border-right-width: 2px; }
+
+      @keyframes float-letter {
+        0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+        15%  { opacity: var(--opa); }
+        50%  { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: var(--opa); }
+        85%  { opacity: var(--opa); }
+        100% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      }
+
+      @keyframes float-landolt {
+        0%   { transform: rotate(var(--init-rot)) translate(0, 0); opacity: 0; }
+        15%  { opacity: var(--opa); }
+        50%  { transform: rotate(calc(var(--init-rot) + var(--rot))) translate(var(--dx), var(--dy)); opacity: var(--opa); }
+        85%  { opacity: var(--opa); }
+        100% { transform: rotate(var(--init-rot)) translate(0, 0); opacity: 0; }
+      }
+
+      @keyframes pulse-circle-1 {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+        50%      { transform: translate(-50%, -50%) scale(1.08); opacity: 0.3; }
+      }
+
+      @keyframes pulse-circle-2 {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+        50%      { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
       }
 
       .rx-header {
@@ -1123,6 +1223,16 @@
       </section>
 
       <section id="main" class="screen main" aria-label="Medical Clipboard">
+        <div class="vision-bg" aria-hidden="true">
+          <div class="vision-grid"></div>
+          <div class="vision-glow"></div>
+          <div class="vision-circle vision-circle-1"></div>
+          <div class="vision-circle vision-circle-2"></div>
+          <div class="vision-corner corner-tl"></div>
+          <div class="vision-corner corner-tr"></div>
+          <div class="vision-corner corner-bl"></div>
+          <div class="vision-corner corner-br"></div>
+        </div>
         <div class="main-shell">
           <header class="rx-header">
             <span class="rx-symbol">Rx</span>
@@ -1227,5 +1337,99 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+      (function () {
+        var bg = document.querySelector('.vision-bg');
+        if (!bg) return;
+
+        var letters = ['E','F','P','T','O','Z','L','P','D','C'];
+        var rand = function (min, max) { return Math.random() * (max - min) + min; };
+        var sign = function () { return Math.random() < 0.5 ? -1 : 1; };
+
+        // 부유하는 시력표 문자 12개
+        for (var i = 0; i < 12; i++) {
+          var el = document.createElement('span');
+          el.className = 'vision-letter';
+          el.textContent = letters[Math.floor(Math.random() * letters.length)];
+          el.style.left = rand(5, 90) + '%';
+          el.style.top = rand(5, 90) + '%';
+          el.style.fontSize = rand(30, 90) + 'px';
+          el.style.setProperty('--opa', rand(0.03, 0.11).toFixed(3));
+          el.style.setProperty('--dur', rand(20, 45).toFixed(1) + 's');
+          el.style.setProperty('--delay', rand(0, 5).toFixed(1) + 's');
+          el.style.setProperty('--dx', (sign() * rand(5, 15)).toFixed(1) + 'vw');
+          el.style.setProperty('--dy', (sign() * rand(5, 15)).toFixed(1) + 'vh');
+          el.style.setProperty('--rot', (sign() * rand(5, 15)).toFixed(1) + 'deg');
+          bg.appendChild(el);
+        }
+
+        // 란돌트고리 8개
+        var rotations = [0, 90, 180, 270];
+        var svgNS = 'http://www.w3.org/2000/svg';
+
+        for (var j = 0; j < 8; j++) {
+          var wrap = document.createElement('div');
+          wrap.className = 'vision-landolt';
+          var size = rand(40, 90);
+          wrap.style.width = size + 'px';
+          wrap.style.height = size + 'px';
+          wrap.style.left = rand(5, 90) + '%';
+          wrap.style.top = rand(5, 90) + '%';
+
+          var initRot = rotations[Math.floor(Math.random() * rotations.length)];
+          wrap.style.setProperty('--init-rot', initRot + 'deg');
+          wrap.style.setProperty('--opa', rand(0.06, 0.18).toFixed(3));
+          wrap.style.setProperty('--dur', rand(20, 50).toFixed(1) + 's');
+          wrap.style.setProperty('--delay', rand(0, 8).toFixed(1) + 's');
+          wrap.style.setProperty('--dx', (sign() * rand(5, 20)).toFixed(1) + 'vw');
+          wrap.style.setProperty('--dy', (sign() * rand(5, 20)).toFixed(1) + 'vh');
+          wrap.style.setProperty('--rot', (sign() * rand(10, 30)).toFixed(1) + 'deg');
+
+          var svg = document.createElementNS(svgNS, 'svg');
+          svg.setAttribute('viewBox', '0 0 100 100');
+          svg.setAttribute('width', '100%');
+          svg.setAttribute('height', '100%');
+
+          var defs = document.createElementNS(svgNS, 'defs');
+          var mask = document.createElementNS(svgNS, 'mask');
+          mask.setAttribute('id', 'lm' + j);
+
+          var mRect = document.createElementNS(svgNS, 'rect');
+          mRect.setAttribute('width', '100');
+          mRect.setAttribute('height', '100');
+          mRect.setAttribute('fill', 'white');
+          mask.appendChild(mRect);
+
+          var mCircle = document.createElementNS(svgNS, 'circle');
+          mCircle.setAttribute('cx', '50');
+          mCircle.setAttribute('cy', '50');
+          mCircle.setAttribute('r', '25');
+          mCircle.setAttribute('fill', 'black');
+          mask.appendChild(mCircle);
+
+          var mGap = document.createElementNS(svgNS, 'rect');
+          mGap.setAttribute('x', '50');
+          mGap.setAttribute('y', '42.5');
+          mGap.setAttribute('width', '40');
+          mGap.setAttribute('height', '15');
+          mGap.setAttribute('fill', 'black');
+          mask.appendChild(mGap);
+
+          defs.appendChild(mask);
+          svg.appendChild(defs);
+
+          var circle = document.createElementNS(svgNS, 'circle');
+          circle.setAttribute('cx', '50');
+          circle.setAttribute('cy', '50');
+          circle.setAttribute('r', '40');
+          circle.setAttribute('fill', '#f472b6');
+          circle.setAttribute('mask', 'url(#lm' + j + ')');
+          svg.appendChild(circle);
+
+          wrap.appendChild(svg);
+          bg.appendChild(wrap);
+        }
+      })();
+    </script>
   </body>
 </html>
