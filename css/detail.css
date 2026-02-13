@@ -80,6 +80,7 @@ body {
   place-items: center;
   text-transform: uppercase;
   letter-spacing: 3px;
+  gap: 8px;
   font-size: 25px;
   font-family: "RockLocal";
 
@@ -147,10 +148,10 @@ body {
 
 .novel .logo,
 .novel .content {
-  font-family: "MapoGoldenPier", sans-serif;
+  font-family: "BookkGothic", sans-serif;
 }
 
-.webtoon .logo {
+.cartoon .logo {
   font-family: "DXGothic", sans-serif;
 }
 
