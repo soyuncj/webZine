@@ -862,8 +862,8 @@
 
       /* === 2. Diopter Scale === */
       .diopter-scale {
-        width: 100%;
-        max-width: 500px;
+        flex: 1;
+        min-width: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -914,6 +914,25 @@
         background: #f4efe9;
         padding: 0 8px;
         z-index: 1;
+      }
+
+      /* === HeartEye === */
+      .diopter-row {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .heart-eye {
+        position: absolute;
+        right: -270px;
+        top: 50%;
+        transform: translateY(calc(-50% - 100px));
+        width: 150px;
+        height: 300px;
+        object-fit: contain;
       }
 
       /* === 장식 반응형 === */
@@ -1115,13 +1134,16 @@
               </div>
             </div>
           </header>
-          <div class="diopter-scale" aria-hidden="true">
-            <span>-3.0</span><span>-2.0</span><span>-1.0</span>
-            <span class="diopter-zero">0</span>
-            <span>+1.0</span><span>+2.0</span><span>+3.0</span>
-            <div class="diopter-pointer"></div>
-          </div>
           <h2 class="works-title">I fell in <span>love</span> at first sight....</h2>
+          <div class="diopter-row">
+            <div class="diopter-scale" aria-hidden="true">
+              <span>-3.0</span><span>-2.0</span><span>-1.0</span>
+              <span class="diopter-zero">0</span>
+              <span>+1.0</span><span>+2.0</span><span>+3.0</span>
+              <div class="diopter-pointer"></div>
+            </div>
+            <img class="heart-eye" src="src/img/HeartEye.png" alt="" aria-hidden="true" />
+          </div>
           <div class="clipboard">
             <div class="works-layout">
               <div class="works-left">
@@ -1199,6 +1221,7 @@
           </div>
 
         </div>
+
       </section>
     </main>
 
