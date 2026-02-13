@@ -153,7 +153,9 @@ body {
 }
 
 .novel .logo,
-.novel .content {
+.novel .content,
+.review .logo,
+.review .content {
   font-family: "BookkGothic", sans-serif;
 }
 

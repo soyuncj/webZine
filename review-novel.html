@@ -1,58 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOVE EYE EXAM · Review</title>
+    <title>LOVE EYE EXAM · Novel Review</title>
     <link rel="stylesheet" href="css/shared.css" />
     <link rel="stylesheet" href="css/category.css" />
     <style>
-      .hub {
+      .list {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        font-family: "RockLocal", "Rockwell", "Rockwell Nova", serif;
+        gap: 8px;
+        font-family: "DXGothic", sans-serif;
       }
 
-      .hub-link {
-        border: 2px solid var(--pink);
-        padding: 28px 20px;
+      .item {
+        border: 2px solid #cfcfcf;
+        padding: 10px 14px;
         background: #ffffff;
         text-decoration: none;
         color: inherit;
         display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 10px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
-      .hub-link:hover,
-      .hub-link:focus-visible {
+      .item:hover,
+      .item:focus-visible {
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
       }
 
-      .hub-link:focus-visible {
+      .item:focus-visible {
         outline: 2px solid var(--pink);
         outline-offset: 2px;
-      }
-
-      .hub-label {
-        font-size: clamp(16px, 2vw, 20px);
-        font-weight: 600;
-        color: var(--gray);
-      }
-
-      .hub-count {
-        font-size: clamp(12px, 1.4vw, 14px);
-        color: #999;
-      }
-
-      @media (max-width: 480px) {
-        .hub {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
@@ -61,16 +44,24 @@
       <section class="frame">
         <div class="header">
           <div class="logo">LOVE EYE EXAM</div>
-          <a class="back" href="index.html#main" aria-label="뒤로가기">&larr;</a>
+          <a class="back" href="review.html" aria-label="뒤로가기">&larr;</a>
         </div>
-        <h1 class="title">Review</h1>
-        <div class="hub">
-          <a class="hub-link" href="review-novel.html">
-            <span class="hub-label">Novel</span>
-          </a>
-          <a class="hub-link" href="review-cartoon.html">
-            <span class="hub-label">Cartoon</span>
-          </a>
+        <h1 class="title">Novel Review</h1>
+        <div class="list">
+          <a class="item" href="review-novel-1.html">기적의 소녀 - 백륭</a>
+          <a class="item" href="review-novel-2.html">김제로는 이승에 가고 싶다 - 2411</a>
+          <a class="item" href="review-novel-3.html">디펜스 메커니즘 - 믕뮤</a>
+          <a class="item" href="review-novel-4.html">아프니, 그러게 왜 거기 서 있어 - 간장글</a>
+          <a class="item" href="review-novel-5.html">포도 밭 주인 이름은 - 애효</a>
+          <a class="item" href="review-novel-6.html">인사팀으로 오시길 바랍니다 - 물개0</a>
+          <a class="item" href="review-novel-7.html">파괴왕 김영우 - 무광</a>
+          <a class="item" href="review-novel-8.html">안정적 복수 - 화각</a>
+          <a class="item" href="review-novel-9.html">사와 랑 사이 - 종종</a>
+          <a class="item" href="review-novel-10.html">샹그리아 - 사라내</a>
+          <a class="item" href="review-novel-11.html">시린 온기 - 에효</a>
+          <a class="item" href="review-novel-12.html">친절한 뱀파이어 아저씨 - 귀공자</a>
+          <a class="item" href="review-novel-13.html">[ERROR : SEOUL] - 배동현</a>
+          <a class="item" href="review-novel-14.html">Message In A Bottle - 인재</a>
         </div>
       </section>
     </main>
