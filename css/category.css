@@ -142,6 +142,20 @@ body {
   line-height: 1;
 }
 
+.select-bar {
+  position: static;
+  margin-top: 32px;
+}
+
+.select-arc {
+  width: min(42vw, 240px);
+  height: min(21vw, 120px);
+}
+
+.select-ray .ray-label {
+  font-size: clamp(13px, 1.8vw, 16px);
+}
+
 @media (max-width: 480px) {
   .frame {
     border-radius: 8px;
